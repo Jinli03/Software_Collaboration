@@ -1,0 +1,27 @@
+server:
+  port: 9090
+
+spring:
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant_path_matcher
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${ip}:3306/view?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: Abc123!!
+  devtools:
+    restart:
+      enable: true
+      additional-paths: src/main/java
+  main:
+    allow-bean-definition-overriding: true
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+ip: 106.54.241.107
+#springfox:
+#  documentation:
+#    swagger-ui:
+#      enabled=true
