@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view />
-    <ReminderPopUp :visible="true" />
+    <ReminderPopUp :visible="showReminder" />
   </div>
 </template>
 
