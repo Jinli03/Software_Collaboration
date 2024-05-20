@@ -1,27 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="IU-241.14494.240">
-    <data-source name="@106.54.241.107" uuid="23ab923d-80b5-4c5d-be25-c869637099a5">
+  <component name="dataSourceStorageLocal" created-in="IU-232.9921.47">
+    <data-source name="@106.54.241.107" uuid="9d2b00c0-3621-42b7-ac3e-06d6b5ed62c6">
       <database-info product="MySQL" version="8.3.0" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="8.3.0" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
+        <jdbc-catalog-is-schema>true</jdbc-catalog-is-schema>
       </database-info>
       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="schema">
-            <name qname="@" />
-            <name qname="view" />
-          </node>
+          <node kind="schema" qname="view" />
         </introspection-scope>
       </schema-mapping>
-    </data-source>
-    <data-source name="view@106.54.241.107" uuid="abca9db6-4951-43da-b848-a23dbe6cd486">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" />
-      <user-name>root</user-name>
-      <schema-mapping />
     </data-source>
   </component>
 </project>
