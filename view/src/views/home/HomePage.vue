@@ -1,29 +1,27 @@
 <template>
-  <div >
-    <div class="background-image-container" >
+  <div>
+    <div class="background-image-container">
       <div>
         <div>
           <div>
             <img src="../../assets/222.png" alt="First Image" class="image1" style="width: 200px; height: 200px; position: absolute; top: 480px; left: 400px;" @click="$router.push('search')">
-            <p style="position: absolute; top: 650px; left: 430px; font-size: 26px; color: black">分析局</p>
+            <p class="unselectable" style="position: absolute; top: 650px; left: 430px; font-size: 26px; color: black">分析局</p>
           </div>
           <div>
             <img src="@/assets/333.png" alt="Second Image" class="image2" style="width: 200px; height: 200px; position: absolute; bottom: 480px; right: 320px" @click="$router.push('personal')">
-            <p style="position: absolute; bottom: 430px; right:380px; font-size: 26px; color: black">个人档案局</p>
+            <p class="unselectable" style="position: absolute; bottom: 430px; right: 380px; font-size: 26px; color: black">个人档案局</p>
           </div>
           <div>
             <img src="@/assets/444.png" alt="Third Image" class="image3" style="width: 200px; height: 200px; position: absolute; bottom: 470px; left: 300px" @click="$router.push('exchange')">
-            <p style="position: absolute; bottom: 420px; left:330px; font-size: 26px; color: black">图书交易局</p>
+            <p class="unselectable" style="position: absolute; bottom: 420px; left: 330px; font-size: 26px; color: black">图书交易局</p>
           </div>
         </div>
-
-        <div class="watermark" >&copy; Designd by Agency.Icons by icons8</div>
-
-
+        <div class="watermark">&copy; Designed by Agency.Icons by icons8</div>
       </div>
     </div>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -98,5 +96,19 @@ export default {
 
 .image3:hover {
   transform: scale(1.1); /* 放大1.1倍 */
+}
+
+.unselectable {
+  user-select: none; /* 防止文本被选中 */
+}
+
+/* 针对每个图像的hover效果和其他已定义的样式 */
+.image1:hover, .image2:hover, .image3:hover {
+  transform: scale(1.1); /* 鼠标悬浮时放大 */
+}
+
+/* 防止水印被选中，如果需要的话 */
+.watermark {
+  user-select: none;
 }
 </style>
