@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <router-view />
+    <ReminderPopUp :visible="true" />
   </div>
 </template>
 
@@ -17,19 +18,17 @@ export default {
     };
   },
   created() {
-    this.setupReminder();
+    this.checkReminder(); // 立即执行一次检查以更新状态
+    this.setupReminder(); // 设置定时检查
   },
-  methods:{
+  methods: {
+    checkReminder() {
+      const now = new Date();
+      const hours = now.getHours();
+      this.showReminder = hours >= 23 || hours < 6;
+    },
     setupReminder() {
-      const checkInterval = setInterval(() => {
-        const now = new Date();
-        const hours = now.getHours();
-        const minutes = now.getMinutes();
-        if (hours === 23 && minutes === 0) {
-          this.setupReminder = true;
-          clearInterval(checkInterval);
-        }
-      }, 60000);
+      setInterval(this.checkReminder, 60000); // 每分钟检查一次时间
     }
   }
 }
