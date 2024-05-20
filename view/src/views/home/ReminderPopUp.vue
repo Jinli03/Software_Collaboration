@@ -82,6 +82,7 @@ export default {
   color: white;
   z-index: 1000;
   animation: fadeInUp 0.5s ease-out forwards;
+  user-select: none; /* Prevent text selection */
 }
 
 .moon {
