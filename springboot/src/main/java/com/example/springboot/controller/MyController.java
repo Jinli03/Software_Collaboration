@@ -22,8 +22,8 @@ import java.util.List;
 
 public class MyController {
     @Resource
-    NewsService newsService;
-    
+    NewsService newsService;// 注释
+
     UserService userService;
 
     @AuthAccess //token放行
