@@ -8,6 +8,7 @@ import com.example.springboot.common.AuthAccess;
 import com.example.springboot.common.Result;
 import com.example.springboot.entity.News;
 import com.example.springboot.entity.News;
+import com.example.springboot.entity.Notice;
 import com.example.springboot.entity.User;
 import com.example.springboot.service.NewsService;
 import com.example.springboot.service.NewsService;
@@ -89,4 +90,43 @@ public class MyController {
         }
         return Result.success(page);
     }
+    //更新
+    @PutMapping("/update")
+    public Result update(@RequestBody Notice notice) {
+
+        return Result.success();
+    }
+
+    //单个删除
+    @DeleteMapping("/delete/{id}")
+    public Result delete() {
+        return delete(null);
+    }
+
+    //单个删除
+    @DeleteMapping("/delete/{id}")
+    public Result delete(@PathVariable Integer id) {
+  
+        return Result.success();
+    }
+
+    //批量删除
+    @DeleteMapping("/delete/batch")
+    public Result batchdelete(@RequestBody List<Integer> ids) {
+
+        return Result.success();
+    }
+
+    //查询全部
+    @GetMapping("/select")
+    public Result selectNotice() {
+        List<Notice> notice = noticeService.list(new QueryWrapper<Notice>().orderByDesc("id"));
+        return Result.success(notice);
+    }
+
+    //单条件查询
+    @GetMapping("/selectById/{id}")
+    public Result selectByIdNotice(@PathVariable Integer id) {
+        Notice notice = noticeService.getById(id);
+        return Result.success(notice);
 }
