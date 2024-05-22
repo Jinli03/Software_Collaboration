@@ -8,14 +8,14 @@
         <el-form :model="user" :rules="rules" ref="loginRef">
           <div class="form-header">欢迎登录考研分析局</div>
           <el-form-item prop="name" class="form-item">
-            <el-input prefix-icon="el-icon-user" size="medium" placeholder="请输入账号" v-model="user.name"></el-input>
+            <el-input prefix-icon="el-icon-user" size="medium" placeholder="请输入账号" v-model="user.name" @keyup.enter.native="login"></el-input>
           </el-form-item>
           <el-form-item prop="password" class="form-item">
-            <el-input prefix-icon="el-icon-lock" size="medium" show-password placeholder="请输入密码" v-model="user.password"></el-input>
+            <el-input prefix-icon="el-icon-lock" size="medium" show-password placeholder="请输入密码" v-model="user.password" @keyup.enter.native="login"></el-input>
           </el-form-item>
           <el-form-item prop="code" class="form-item">
             <div class="code-container">
-              <el-input prefix-icon="el-icon-check" size="medium" placeholder="请输入验证码(小写)" v-model="user.code"></el-input>
+              <el-input prefix-icon="el-icon-check" size="medium" placeholder="请输入验证码(小写)" v-model="user.code" @keyup.enter.native="login"></el-input>
               <valid-code @update:value="getCode" class="valid-code"></valid-code>
             </div>
           </el-form-item>
@@ -80,13 +80,13 @@ export default {
       // 提示输入内容
       rules: {
         name: [
-          {required: true, message: '请输入账号', trigger: 'blur'}
+          { required: true, message: '请输入账号', trigger: 'blur' }
         ],
         password: [
-          {required: true, message: '请输入密码', trigger: 'blur'}
+          { required: true, message: '请输入密码', trigger: 'blur' }
         ],
         code: [
-          {validator: validateCode, trigger: 'blur'}
+          { validator: validateCode, trigger: 'blur' }
         ]
       }
     }
@@ -109,7 +109,6 @@ export default {
       this.code = code.toLowerCase()
     },
     login() {
-      // 拦截请求
       this.$refs['loginRef'].validate((valid) => {
         if (valid) {
           this.$request.post("/login", this.user).then(res => {
