@@ -85,7 +85,10 @@ export default {
   align-items: center;
   height: 100vh; /* Full viewport height */
   width: 100vw; /* Full viewport width */
-  background-color: #008B74; /* Set background color */
+  background-image: url('@/assets/background/homepage.png'); /* Add background image */
+  background-size: cover; /* Ensure the image covers the entire container */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent image repetition */
 }
 
 /* Form and Card Styles */
@@ -95,7 +98,6 @@ export default {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Light shadow for depth */
   border-radius: 10px; /* Rounded corners */
   overflow: hidden; /* Ensures no child element leaks out */
-  background-color: #00C2A8; /* Set background color for card */
 }
 
 /* Input and Button Styles */
@@ -114,17 +116,15 @@ export default {
 }
 
 .el-button {
-  background-color: #845EC2; /* Primary button color */
+  background-color: #409EFF; /* Primary button color */
   border: none; /* Remove default border */
   color: white; /* Text color for buttons */
   transition: background-color 0.2s, box-shadow 0.2s; /* Smooth transition for hover */
-
 }
 
 .el-button:hover {
-  background-color: #845EC2; /* Slightly darker on hover */
+  background-color: #337ecc; /* Slightly darker on hover */
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2); /* Shadow for 3D effect on hover */
-
 }
 
 /* Additional styles for avatars and labels */
