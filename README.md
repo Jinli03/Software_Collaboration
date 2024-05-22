@@ -100,11 +100,9 @@
     - 检查Spring Boot日志以获取详细错误信息，并确保所有依赖项已正确安装。
 
 ## 贡献者
-- 杜志伟 - 组长
-- 杨宁 - 需求经理
-- 吴易之 - 计划经理
-- 何飞扬 - 开发经理
-- 尚曦乐 - 质量经理
+- Jinli03
+- yinian3shuhongwentangniaoxizaogou
+- ning-hardworking
 
 指导教师：薛海
 
