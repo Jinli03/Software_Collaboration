@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import School from "@/components/School.vue";
+
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -22,9 +24,10 @@ const routes = [
       { path: 'echarts', name: 'Echarts', meta: { name: '图表信息'}, component: () => import('../views/manager/Echarts.vue')},
       { path: 'notice', name: 'Notice', meta: { name: '系统公告'}, component: () => import('../views/manager/Notice.vue')},
       { path: 'tables', name: 'Tables', meta: { name: '查询名称'}, component: () => import('../views/manager/Tables.vue')},
-  ]},
+    ]
+  },
   {
-  path: '/',
+    path: '/',
     name: 'Menu',
     component: () => import('../views/Menu.vue'),
     redirect: 'homepage',//重定向
@@ -41,13 +44,13 @@ const routes = [
       { path: 'password', name: 'Password', meta: { name: '修改密码'}, component: () => import('../views/home/Password.vue')},
       { path: 'subinfo', name: 'Subinfo', meta: { name: '专业详情'}, component: () => import('../views/home/Subinfo.vue')},
       { path: 'foruminfo', name: 'Foruminfo', meta: { name: '评论区'}, component: () => import('../views/home/Foruminfo.vue')},
-]
-},
+    ]
+  },
   { path: '/element', name: 'Element', meta: { name: 'element'}, component: () => import('../views/Element.vue')},
   { path: '/login', name: 'Login', meta: { name: '登录'}, component: () => import('../views/Login.vue')},
   { path: '/register', name: 'Register', meta: { name: '注册'}, component: () => import('../views/Register.vue')},
+  { path: '/ai', name: 'Ai', meta: { name: '彩蛋'}, component: () => import('../components/Ai.vue')},
   { path: '/*', name: '404', meta: { name: '无法访问'}, component: () => import('../views/404.vue')},
-
 ]
 
 const router = new VueRouter({
@@ -56,12 +59,12 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) =>{
+router.beforeEach((to, from, next) => {
   let adminPath = ['/user']
   let users = JSON.parse(localStorage.getItem('pilot') || '{}')
-  if ( users.role !== '管理员' && adminPath.includes(to.path)) {
+  if (users.role !== '管理员' && adminPath.includes(to.path)) {
     next('/403')
-  } else{
+  } else {
     next()
   }
 })
