@@ -1,29 +1,24 @@
-<!--
-*@Password
-*@author Jinli
-*@date 2024/2/21 22:02
--->
 <template>
   <div class="center-container">
-    <el-card style="width: 50%; max-width: 600px;">
+    <el-card class="password-card">
+      <div class="form-header">修改密码</div>
       <el-form ref="formRef" :model="user" :rules="rules" label-width="100px">
         <el-form-item label="原始密码" prop="password">
-          <el-input show-password v-model="user.password" placeholder="请输入原始密码"></el-input>
+          <el-input show-password v-model="user.password" placeholder="请输入原始密码" prefix-icon="el-icon-lock"></el-input>
         </el-form-item>
         <el-form-item label="新密码" prop="newPassword">
-          <el-input show-password v-model="user.newPassword" placeholder="请输入新密码"></el-input>
+          <el-input show-password v-model="user.newPassword" placeholder="请输入新密码" prefix-icon="el-icon-lock"></el-input>
         </el-form-item>
         <el-form-item label="确认新密码" prop="confirmPassword">
-          <el-input show-password v-model="user.confirmPassword" placeholder="确认新密码"></el-input>
+          <el-input show-password v-model="user.confirmPassword" placeholder="确认新密码" prefix-icon="el-icon-check"></el-input>
         </el-form-item>
-        <div style="text-align: center">
+        <div class="form-actions">
           <el-button type="primary" @click="update">修改</el-button>
         </div>
       </el-form>
     </el-card>
   </div>
 </template>
-
 
 <script>
 export default {
@@ -74,20 +69,29 @@ export default {
 }
 </script>
 
-
 <style scoped>
 .center-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  width: 100vw;
+  background-color: #f0f2f5;
 }
 
-.el-card {
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+.password-card {
+  width: 50%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 20px;
+}
+
+.form-header {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #409eff;
 }
 
 .el-input__inner, .el-button {
@@ -107,10 +111,15 @@ export default {
 
 .el-button:hover {
   background-color: #337ecc;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .el-form-item__label {
   font-weight: bold;
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 20px;
 }
 </style>

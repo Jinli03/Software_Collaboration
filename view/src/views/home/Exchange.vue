@@ -5,110 +5,104 @@
 -->
 <template>
   <div>
-    <el-row :gutter="20">
-      <el-col :span="20">
-        <template>
-          <a-affix :offset-top="80">
-            <a-button type="primary" @click="$router.push('Personal')">返回到个人档案局</a-button>
-          </a-affix>
-        </template>
-      </el-col>
-      <el-col :span="4">
-        <div style="margin: 10px 0">
-          <el-pagination
-              @current-change="handleCurrentChange"
-              :current-page="pageNum"
-              :page-sizes="[100, 200, 300, 400]"
-              :page-size="pageSize"
-              layout="total,prev, pager, next"
-              :total="total">
-          </el-pagination>
-        </div>
-      </el-col>
-    </el-row>
+    <template>
+      <a-affix :offset-top="80">
+        <a-button type="primary" @click="$router.push('HomePage')">返回到首页</a-button>
+      </a-affix>
+    </template>
+    <div style="margin: 10px">
+      <p>开始选择图书之旅吧！</p>
+    </div>
     <el-container class="background-image-container">
       <div style="backdrop-filter: blur(8px); width: 95%; height: 95%; border-radius: 2%;">
-        <el-row :gutter="20" style="padding: 8px">
-          <el-col :span="6" v-for="form in forms" :key="form.id" style="padding: 10px">
-            <el-card class="card-item" style="background-size: cover" >
-              <div slot="header" style="color: black;">
-                <img :src="form.pic || 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'" alt="" style="width: 30px; height: 30px; border-radius: 50%; margin: 2px">
-                <span>{{ form.name }}</span>
-                <span style="float: right;">{{ form.sub }}</span>
-              </div>
-              <div style="color: black;">
-                <div slot="footer">
-                  <span>{{ form.des }}</span><br>
-                  <span>#</span>
-                  <span>{{ form.price }}</span>
-                </div>
-                <!-- 在这里添加更多数据 -->
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+          <el-tab-pane label="图书商城" name="first" @click="load(1)">
+            <User/>
+          </el-tab-pane>
+          <el-tab-pane label="检查" name="second" v-if="user.role === '管理员'" @click="load1(1)">
+            <Manager/>
+          </el-tab-pane>
+          <el-tab-pane label="上传" name="third" v-if="user.role === '商家'">
+            <Merchant/>
+          </el-tab-pane>
+        </el-tabs>
       </div>
     </el-container>
   </div>
 </template>
 
+
+
 <script>
+import Merchant from "@/components/Merchant.vue";
+import Manager from "@/components/Manager.vue";
+import User from "@/components/User.vue";
 export default {
-  name: "Exchange",
-  props: {},
-  components: {},
+  components:{
+    User, Manager, Merchant
+  },
+  name: 'search',
   data() {
     return {
-      forms: [],
-      pageNum: 1,
-      pageSize: 12,
-      total: 0, // 添加total属性
+      user: JSON.parse(localStorage.getItem('pilot') || '{}'),
+      value: [300, 350],
+      activeName: 'first',
     }
   },
   created() {
+    if (!this.user.id) {
+      this.$router.push('/login')
+    }
+    this.load()
   },
   mounted() {
-    this.load(1)
+
   },
   methods: {
+    handleClick(tab, event) {
+      console.log(tab, event);
+    },
     load(pageNum) {
-      if (pageNum) {
-        this.pageNum = pageNum
-      }
-      this.$request.get('/exchange/allBooks', {
-        params: {
-          pageNum: this.pageNum,
-          pageSize: this.pageSize,
-        }
-      }).then(res => {
-        if (res.data) {
-          this.forms = res.data;
-          console.log('Response data:', this.forms);
-          this.total = res.data.total;
-        } else {
-          this.forms = [];
-          this.total = 0;
-        }
-      });
+      // Your load function
+    },
+    load1(pageNum) {
+      // Your load1 function
     },
     handleCurrentChange(pageNum) {
-      this.pageNum = pageNum;
-      this.load(pageNum); // 传递pageNum参数
+      this.pageNum = pageNum
+      this.load()
     },
-  },
+  }
 }
 </script>
 
+
 <style>
+
 .background-image-container {
-  background-image: url('@/assets/background/homepage.png');
-  background-size: 90%; /* 使用 cover 让背景图片填满整个容器 */
+  background-image: url('@/assets/background/up.png');
+  background-size: cover; /* 将背景图片铺满整个容器 */
   background-position: center; /* 图片居中显示 */
-  height: 100vh; /* 使用视口高度作为容器高度 */
-  width: 100vw; /* 使用视口宽度作为容器宽度 */
+  height: 84vh; /* 调整容器的高度，根据需要更改 */
+  background-size: 75%; /* 缩小背景图片 */
   display: flex;
   justify-content: center;
   align-items: center;
   color: white; /* 文字颜色 */
 }
+
+.like {
+  cursor: pointer;
+  font-size: 25px;
+  display: inline-block;
+}
+
+.card-item {
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-item:hover {
+  transform: scale(1.1);
+}
+
 </style>

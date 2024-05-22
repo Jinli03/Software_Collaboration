@@ -27,4 +27,6 @@ public class Exchange {
     private Integer price;
     private String des;
     private String time;
+    private String state;
+    private String buyer;
 }
