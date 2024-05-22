@@ -80,7 +80,7 @@
             <el-button type="success">成功按钮</el-button>
             <el-button type="primary" plain>朴素按钮</el-button>
             <el-button type="primary" round>圆角按钮</el-button>
-            <el-button type="primary" circle>伟</el-button>
+            <el-button type="primary" circle>圆</el-button>
             <el-button type="primary" circle icon="el-icon-edit"></el-button>
             <el-button type="primary" circle>
               <img src="" alt="图标">
