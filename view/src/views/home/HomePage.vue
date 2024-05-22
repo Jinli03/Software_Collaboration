@@ -17,41 +17,15 @@
       </div>
       <div class="watermark">&copy; Designed by Agency. Icons by icons8</div>
     </div>
-    <Popup :visible.sync="isPopupVisible" />
   </div>
 </template>
 
 <script>
-import Popup from '@/components/Popup.vue';
-
 export default {
   name: "HomePage",
-  components: {
-    Popup
-  },
   data() {
-    return {
-      isPopupVisible: false
-    };
+    return {};
   },
-  mounted() {
-    this.checkTime();
-    this.timeInterval = setInterval(this.checkTime, 60000); // 每分钟检查一次时间
-  },
-  beforeDestroy() {
-    clearInterval(this.timeInterval);
-  },
-  methods: {
-    checkTime() {
-      const now = new Date();
-      const hours = now.getHours();
-      const minutes = now.getMinutes();
-      // 修改条件为下午4点15分之后
-      if (hours >= 23) {
-        this.isPopupVisible = true;
-      }
-    }
-  }
 };
 </script>
 
