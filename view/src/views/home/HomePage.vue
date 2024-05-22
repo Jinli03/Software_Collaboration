@@ -1,6 +1,7 @@
 <template>
   <div class="background-image-container">
     <div class="content-container">
+      <!-- 添加夜间模式按钮，居中显示 -->
       <div class="image-container">
         <div>
           <img src="../../assets/222.png" alt="First Image" class="image image1" @click="$router.push('search')">
@@ -31,23 +32,27 @@ export default {
   },
   data() {
     return {
-      isPopupVisible: false
+      isPopupVisible: false,
+      isNightMode: false // 添加夜间模式状态
     };
   },
-  mounted() {
-    this.checkTime();
-    this.timeInterval = setInterval(this.checkTime, 60000); // 每分钟检查一次时间
-  },
-  beforeDestroy() {
-    clearInterval(this.timeInterval);
-  },
   methods: {
+    // 切换夜间模式
+    toggleNightMode() {
+      this.isNightMode = !this.isNightMode;
+      // 根据夜间模式状态修改整体颜色明亮度
+      if (this.isNightMode) {
+        document.body.classList.add('night-mode');
+      } else {
+        document.body.classList.remove('night-mode');
+      }
+    },
     checkTime() {
       const now = new Date();
       const hours = now.getHours();
       const minutes = now.getMinutes();
-      // 修改条件为下午4点15分之后
-      if (hours >= 23) {
+      // 条件修改为下午4点15分之后
+      if (1) {
         this.isPopupVisible = true;
       }
     }
@@ -56,16 +61,18 @@ export default {
 </script>
 
 <style scoped>
-.watermark {
+/* 夜间模式按钮样式 */
+.night-mode-button {
   position: fixed;
-  bottom: 40px;
-  left: 20px;
-  font-size: 20px;
-  color: rgba(0, 0, 0, 0.1);
-  z-index: 9999;
-  user-select: none;
+  top: 20px; /* 距离顶部20px，可以根据需要调整 */
+  left: 50%; /* 居中显示 */
+  transform: translateX(-50%); /* 水平居中 */
+  z-index: 1000; /* 确保按钮在最上层 */
 }
 
+
+
+/* 其他样式保持不变 */
 .background-image-container {
   background-image: url('@/assets/background/homepage.png');
   background-size: 90%;
@@ -123,6 +130,16 @@ export default {
   position: absolute;
   font-size: 26px;
   color: black;
+  user-select: none;
+}
+
+.watermark {
+  position: fixed;
+  bottom: 40px;
+  left: 20px;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.1);
+  z-index: 9999;
   user-select: none;
 }
 </style>
