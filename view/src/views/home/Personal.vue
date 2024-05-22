@@ -324,7 +324,7 @@ export default {
       user: JSON.parse(localStorage.getItem('pilot') || '{}'),
       welcomeMessage: "欢迎来到考研分析局",
       displayedMessage: "",
-      deadline: new Date("2024-12-23"),
+      deadline: new Date("2024-12-21"),
       title1: "已注册用户",
       title2: "已上传专业数量",
       title3: "网页访问量",
