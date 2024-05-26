@@ -93,6 +93,30 @@ public class ExchangeController {
         return Result.success(page);
     }
 
+    @ApiOperation("根据state查询所有图书")
+    @GetMapping("/selectByManagerState")
+    public Result selectByManagerState(
+            @RequestParam Integer pageNum,
+            @RequestParam Integer pageSize,
+            @RequestParam String state
+    ) {
+        QueryWrapper<Exchange> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("state", state);
+
+        // 执行分页查询
+        Page<Exchange> page = exchangeService.page(new Page<>(pageNum, pageSize), queryWrapper);
+
+        // 从分页查询结果中获取记录列表
+        List<Exchange> records = page.getRecords();
+
+        // 对记录列表进行处理（如果需要的话）
+        for (Exchange record : records) {
+            // 这里可以添加需要的逻辑
+        }
+
+        return Result.success(page);
+    }
+
     @ApiOperation("根据id下架某本书")
     @DeleteMapping("/removeShelves/{id}")
     public Result remove(@PathVariable Integer id) {
