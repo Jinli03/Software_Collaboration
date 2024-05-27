@@ -18,7 +18,7 @@
             <div style="margin-right: 10px; margin-bottom: 10px;" @click="bought">
               <el-radio v-model="radio" label="3">已购买</el-radio>
             </div>
-            <div style="margin-right: 10px; margin-bottom: 10px;" @click="state='不合规';">
+            <div style="margin-right: 10px; margin-bottom: 10px;" @click="wrong">
               <el-radio v-model="radio" label="4">不合规</el-radio>
             </div>
           </div>
@@ -87,7 +87,7 @@
           </el-table-column>
           <el-table-column label="操作" align="center">
             <template v-slot="scope">
-              <el-button size="mini" type="danger" plain @click="handleRemove(scope.row.id)">下架</el-button>
+              <el-button size="mini" type="danger" plain @click="handleDown(scope.row.id)">下架</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -110,6 +110,23 @@
         </el-table>
       </div>
 
+      <div v-if="state === '不合规'">
+        <h2>不合规页面</h2>
+        <el-table :data="forms" stripe :header-cell-style="{backgroundColor: 'aliceblue', fontWeight: 'bold', color: '#666'}" @selection-change="handleSelectionChange" style="width: 100%">
+          <el-table-column type="selection" align="center"></el-table-column>
+          <el-table-column label="id" prop="id" align="center"></el-table-column>
+          <el-table-column label="商家" prop="boss" align="center"></el-table-column>
+          <el-table-column label="书名" prop="name" align="center"></el-table-column>
+          <el-table-column label="价格" prop="price" align="center"></el-table-column>
+          <el-table-column label="科目" prop="sub" align="center"></el-table-column>
+          <el-table-column label="描述" prop="des" align="center"></el-table-column>
+          <el-table-column label="状态" align="center">
+            <template v-slot="scope">
+              <el-button size="mini" type="danger" plain disabled>不合规</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
     </el-row>
   </div>
 </template>
@@ -154,6 +171,10 @@ export default {
     },
     bought() {
       this.state = "已购买"
+      this.checkState()
+    },
+    wrong() {
+      this.state = "不合规"
       this.checkState()
     },
     load(pageNum) {
@@ -214,6 +235,20 @@ export default {
     handleUp(id) {
       this.$confirm('确定上架?', '确认', {type: "warning"}).then(response =>{
         this.$request.delete('/exchange/upShelves/' + id).then(res =>{
+
+          if (res.code === '200') {
+            this.load(1)
+            this.$message.success('成功')
+            this.checkMerchantState()
+          } else {
+            this.$message.error(res.msg)
+          }
+        })
+      }).catch(() => {})
+    },
+    handleDown(id) {
+      this.$confirm('确定下架?', '确认', {type: "warning"}).then(response =>{
+        this.$request.delete('/exchange/downShelves/' + id).then(res =>{
 
           if (res.code === '200') {
             this.load(1)

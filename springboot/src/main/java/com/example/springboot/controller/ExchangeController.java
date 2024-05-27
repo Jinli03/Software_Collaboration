@@ -149,5 +149,22 @@ public class ExchangeController {
         }
     }
 
+    @ApiOperation("根据id下架某本不合规书")
+    @DeleteMapping("/downShelves/{id}")
+    public Result down(@PathVariable Integer id) {
+        // 根据ID查询对应的书籍记录
+        Exchange book = exchangeService.getById(id);
+
+        // 如果找到了书籍记录，则更新其状态为下架
+        if (book != null) {
+            book.setState("不合规");
+            exchangeService.updateById(book);
+            return Result.success("成功下架书籍！");
+        } else {
+            return Result.error("未找到指定ID的书籍！");
+        }
+    }
+
 }
+
 
