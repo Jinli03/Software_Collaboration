@@ -6,7 +6,7 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="6">
+      <el-col :span="8">
         <div style="display: flex">
           <el-row>
             <div style="display: flex; flex-wrap: wrap; margin-top: 20px; height: auto;">
@@ -22,14 +22,17 @@
               <div style="margin-right: 10px; margin-bottom: 10px;" @click="removeShelves">
                 <el-radio v-model="radio" label="4">下架</el-radio>
               </div>
+              <div style="margin-right: 10px; margin-bottom: 10px;" @click="wrong">
+                <el-radio v-model="radio" label="5">不合规</el-radio>
+              </div>
               <div style="margin-right: 10px; margin-bottom: 10px;" @click="newOne">
-                <el-radio v-model="radio" label="5">新增</el-radio>
+                <el-radio v-model="radio" label="6">新增</el-radio>
               </div>
             </div>
           </el-row>
         </div>
       </el-col>
-      <el-col :span="12">
+      <el-col :span="10">
         .
       </el-col>
       <el-col :span="4">
@@ -130,6 +133,23 @@
           </el-table-column>
         </el-table>
       </div>
+      <div v-if="state === '不合规'">
+        <h2>下架页面</h2>
+        <el-table :data="forms" stripe :header-cell-style="{backgroundColor: 'aliceblue', fontWeight: 'bold', color: '#666'}" @selection-change="handleSelectionChange" style="width: 100%">
+          <el-table-column type="selection" align="center"></el-table-column>
+          <el-table-column label="id" prop="id" align="center"></el-table-column>
+          <el-table-column label="商家" prop="boss" align="center"></el-table-column>
+          <el-table-column label="书名" prop="name" align="center"></el-table-column>
+          <el-table-column label="价格" prop="price" align="center"></el-table-column>
+          <el-table-column label="科目" prop="sub" align="center"></el-table-column>
+          <el-table-column label="描述" prop="des" align="center"></el-table-column>
+          <el-table-column label="状态" align="center">
+            <template v-slot="scope">
+              <el-button size="mini" type="danger" plain disabled>不合规</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
       <div v-if="state === '新增'">
         <h2>新增页面</h2>
         <el-card style="width: 50%">
@@ -221,6 +241,10 @@ export default {
     bought() {
       this.state = "已购买"
       this.checkState()
+    },
+    wrong() {
+      this.state = "不合规"
+      this.checkMerchantState()
     },
     newOne() {
       this.state = "新增"
