@@ -55,10 +55,10 @@
 
 
             <div style="display: flex; flex-direction: column; justify-content: space-between;position: relative;width: 100%;height: 100%">
-              <el-button  icon="el-icon-plus" circle style="position: absolute;top: -15px;right: -5px" @click="open1"></el-button>
-              <el-popconfirm  title="确认购买吗？">
-                <el-button style="position: absolute;top:30px;right: -15px" slot="reference" >购买</el-button>
-              </el-popconfirm>
+              <el-button  icon="el-icon-plus" circle style="position: absolute;top: -15px;right: -5px" @click="handleAdd(form.id)"></el-button>
+
+              <el-button style="position: absolute;top:30px;right: -15px" slot="reference" @click="handleBuy(form.id)" >购买</el-button>
+
             </div>
           </div>
         </el-card>
@@ -90,6 +90,42 @@ export default {
     this.load(1)
   },
   methods: {
+
+    handleAdd(id) {
+        this.$request.put('/exchange/AddToShopCar/' + id, { shopcar:'是' }).then(res => {
+          if (res.code === '200') {
+            this.load(1);
+            this.$notify({
+              message:"成功加入购物车",
+              type:'success'
+            })
+
+          } else {
+            this.$message.error(res.msg);
+          }
+        }).catch(error => {
+          console.error('添加请求失败:', error);
+          this.$message.error('添加请求失败');
+        })
+    },
+
+    handleBuy(id) {
+      this.$confirm('确定购买?', '确认', {type: "warning"}).then(response => {
+        this.$request.put('/exchange/purchaseShelves/' + id, { buyer: '已购买' }).then(res => {
+          if (res.code === '200') {
+            this.load(1);
+            this.$message.success('购买成功');
+            // 这里可以执行其他操作或者刷新页面等
+          } else {
+            this.$message.error(res.msg);
+          }
+        }).catch(error => {
+          console.error('购买请求失败:', error);
+          this.$message.error('购买请求失败');
+        });
+      }).catch(() => {});
+    },
+
     open1(){
       this.$notify({
         title: '成功',

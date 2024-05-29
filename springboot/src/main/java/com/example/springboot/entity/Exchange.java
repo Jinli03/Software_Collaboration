@@ -29,4 +29,5 @@ public class Exchange {
     private String time;
     private String state;
     private String buyer;
+    private String shopcar;
 }

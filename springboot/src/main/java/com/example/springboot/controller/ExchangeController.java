@@ -214,7 +214,21 @@ public class ExchangeController {
 
 
 
+    @ApiOperation("根据id添加至购物车")
+    @PutMapping ("/AddToShopCar/{id}")
+    public Result Add(@PathVariable Integer id) {
+        // 根据ID查询对应的书籍记录
+        Exchange book = exchangeService.getById(id);
 
+        // 如果找到了书籍记录，则更新其购买状态为已购买
+        if (book != null) {
+            book.setShopcar("是");
+            exchangeService.updateById(book);
+            return Result.success("添加成功！");
+        } else {
+            return Result.error("添加失败");
+        }
+    }
 
 
 }
