@@ -1,7 +1,7 @@
 <!--
 *@Exchange
-*@author Jinli
-*@date 2024/4/22 11:21
+*@author Popeyeeee111
+*@date 2024/5/27 17:06
 -->
 <template>
   <div>
@@ -10,6 +10,11 @@
         <a-button type="primary" @click="$router.push('HomePage')">返回到首页</a-button>
       </a-affix>
     </template>
+
+
+
+
+
     <div style="margin: 10px">
       <p>开始选择图书之旅吧！</p>
     </div>
@@ -28,6 +33,18 @@
         </el-tabs>
       </div>
     </el-container>
+    <!--购物车-->
+    <div class="fixed-button-container">
+      <el-button circle size="medium" icon="el-icon-shopping-cart-1" @click="drawer = true" />
+    </div>
+
+    <el-drawer
+        title="我是标题"
+        :visible.sync="drawer"
+        :with-header="false">
+      <span>购物车</span>
+    </el-drawer>
+
   </div>
 </template>
 
@@ -44,6 +61,7 @@ export default {
   name: 'search',
   data() {
     return {
+      drawer:false,
       user: JSON.parse(localStorage.getItem('pilot') || '{}'),
       value: [300, 350],
       activeName: 'first',
@@ -78,6 +96,14 @@ export default {
 
 
 <style>
+.fixed-button-container {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+
+  z-index: 1000; /* 确保按钮在其他内容之上 */
+}
+
 
 .background-image-container {
   background-image: url('@/assets/background/up.png');
