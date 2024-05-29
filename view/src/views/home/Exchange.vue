@@ -41,8 +41,22 @@
     <el-drawer
         title="我是标题"
         :visible.sync="drawer"
-        :with-header="false">
+        :with-header="false"
+        width="50%">
       <span>购物车</span>
+      <el-table :data="forms" stripe :header-cell-style="{backgroundColor: 'aliceblue', fontWeight: 'bold', color: '#666'}" @selection-change="handleSelectionChange" >
+        <el-table-column type="selection" align="center"></el-table-column>
+        <el-table-column label="id" prop="id" align="center"></el-table-column>
+        <el-table-column label="书名" prop="name" align="center"></el-table-column>
+        <el-table-column label="价格" prop="price" align="center"></el-table-column>
+        <el-table-column label="科目" prop="sub" align="center"></el-table-column>
+        <el-table-column label="商家" prop="boss" align="center"></el-table-column>
+        <el-table-column label="操作" align="center">
+          <template v-slot="scope">
+            <el-button size="mini" type="danger" plain @click="handlePurchase(scope.row.id)">购买</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
     </el-drawer>
 
   </div>
@@ -65,6 +79,7 @@ export default {
       user: JSON.parse(localStorage.getItem('pilot') || '{}'),
       value: [300, 350],
       activeName: 'first',
+      forms:[],
     }
   },
   created() {
@@ -77,12 +92,51 @@ export default {
 
   },
   methods: {
+
+    //购买
+    handlePurchase(id) {
+      this.$confirm('确定购买?', '确认', {type: "warning"}).then(response => {
+        this.$request.put('/exchange/purchaseShelves/' + id, { buyer: '已购买' }).then(res => {
+          if (res.code === '200') {
+            this.load(1);
+            this.$message.success('购买成功');
+            // 这里可以执行其他操作或者刷新页面等
+          } else {
+            this.$message.error(res.msg);
+          }
+        }).catch(error => {
+          console.error('购买请求失败:', error);
+          this.$message.error('购买请求失败');
+        });
+      }).catch(() => {});
+    },
+
+    load(pageNum) {
+      if (pageNum) {
+        this.pageNum = pageNum
+      }
+      this.$request.get('/exchange/allBooks', {
+        params: {
+          pageNum: this.pageNum,
+          pageSize: this.pageSize,
+        }
+      }).then(res => {
+        if (res.data) {
+          this.forms = res.data;
+          console.log('Response data:', this.forms);
+          this.total = res.data.total;
+        } else {
+          this.forms = [];
+          this.total = 0;
+        }
+      });
+    },
+
+
     handleClick(tab, event) {
       console.log(tab, event);
     },
-    load(pageNum) {
-      // Your load function
-    },
+
     load1(pageNum) {
       // Your load1 function
     },

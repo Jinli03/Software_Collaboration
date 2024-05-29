@@ -165,6 +165,58 @@ public class ExchangeController {
         }
     }
 
+
+
+
+    @ApiOperation("根据id购买书籍")
+    @PutMapping ("/purchaseShelves/{id}")
+    public Result purchase(@PathVariable Integer id) {
+        // 根据ID查询对应的书籍记录
+        Exchange book = exchangeService.getById(id);
+
+        // 如果找到了书籍记录，则更新其购买状态为已购买
+        if (book != null) {
+            book.setBuyer("已购买");
+            exchangeService.updateById(book);
+            return Result.success("购买成功！");
+        } else {
+            return Result.error("购买失败");
+        }
+    }
+
+
+
+    @ApiOperation("根据buyer查询所有图书")
+    @GetMapping("/selectByBuyState")
+    public Result selectByBuyer(
+            @RequestParam Integer pageNum,
+            @RequestParam Integer pageSize,
+            @RequestParam String buyer
+
+    ) {
+        QueryWrapper<Exchange> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("buyer", buyer);
+
+
+        // 执行分页查询
+        Page<Exchange> page = exchangeService.page(new Page<>(pageNum, pageSize), queryWrapper);
+
+        // 从分页查询结果中获取记录列表
+        List<Exchange> records = page.getRecords();
+
+        // 对记录列表进行处理（如果需要的话）
+        for (Exchange record : records) {
+            // 这里可以添加需要的逻辑
+        }
+
+        return Result.success(page);
+    }
+
+
+
+
+
+
 }
 
 
