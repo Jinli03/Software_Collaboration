@@ -1,7 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="@106.54.241.107">
+<dataSource name="view@106.54.241.107">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.52">
-    <root id="1"/>
+    <root id="1">
+      <DefaultCasing>exact</DefaultCasing>
+      <DefaultEngine>InnoDB</DefaultEngine>
+      <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
+      <Grants>|root||jinli||ALLOW_NONEXISTENT_DEFINER|G
+|root||root||ALLOW_NONEXISTENT_DEFINER|G
+|root||jinli||ALTER|G
+|root||root||ALTER|G
+|root||jinli||ALTER ROUTINE|G
+|root||root||ALTER ROUTINE|G
+|root||jinli||APPLICATION_PASSWORD_ADMIN|G
+|root||root||APPLICATION_PASSWORD_ADMIN|G
+|root||jinli||AUDIT_ABORT_EXEMPT|G
+|root||mysql.infoschema|localhost|AUDIT_ABORT_EXEMPT|G
+|root||mysql.session|localhost|AUDIT_ABORT_EXEMPT|G
+|root||mysql.sys|localhost|AUDIT_ABORT_EXEMPT|G
+|root||root||AUDIT_ABORT_EXEMPT|G
+|root||jinli||AUDIT_ADMIN|G
+|root||root||AUDIT_ADMIN|G
+|root||jinli||AUTHENTICATION_POLICY_ADMIN|G
+|root||mysql.session|localhost|AUTHENTICATION_POLICY_ADMIN|G
+|root||root||AUTHENTICATION_POLICY_ADMIN|G
+|root||jinli||BACKUP_ADMIN|G
+|root||mysql.session|localhost|BACKUP_ADMIN|G
+|root||root||BACKUP_ADMIN|G
+|root||jinli||BINLOG_ADMIN|G
+|root||root||BINLOG_ADMIN|G
+|root||jinli||BINLOG_ENCRYPTION_ADMIN|G
+|root||root||BINLOG_ENCRYPTION_ADMIN|G
+|root||jinli||CLONE_ADMIN|G
+|root||mysql.session|localhost|CLONE_ADMIN|G
+|root||root||CLONE_ADMIN|G
+|root||jinli||CONNECTION_ADMIN|G
+|root||mysql.session|localhost|CONNECTION_ADMIN|G
+|root||root||CONNECTION_ADMIN|G
+|root||jinli||CREATE|G
+|root||root||CREATE|G
+|root||jinli||CREATE ROLE|G
+|root||root||CREATE ROLE|G
+|root||jinli||CREATE ROUTINE|G
+|root||root||CREATE ROUTINE|G
+|root||jinli||CREATE TABLESPACE|G
+|root||root||CREATE TABLESPACE|G
+|root||jinli||CREATE TEMPORARY TABLES|G
+|root||root||CREATE TEMPORARY TABLES|G
+|root||jinli||CREATE USER|G
+|root||root||CREATE USER|G
+|root||jinli||CREATE VIEW|G
+|root||root||CREATE VIEW|G
+|root||jinli||DELETE|G
+|root||root||DELETE|G
+|root||jinli||DROP|G
+|root||root||DROP|G
+|root||jinli||DROP ROLE|G
+|root||root||DROP ROLE|G
+|root||jinli||ENCRYPTION_KEY_ADMIN|G
+|root||root||ENCRYPTION_KEY_ADMIN|G
+|root||jinli||EVENT|G
+|root||root||EVENT|G
+|root||jinli||EXECUTE|G
+|root||root||EXECUTE|G
+|root||jinli||FILE|G
+|root||root||FILE|G
+|root||jinli||FIREWALL_EXEMPT|G
+|root||mysql.infoschema|localhost|FIREWALL_EXEMPT|G
+|root||mysql.session|localhost|FIREWALL_EXEMPT|G
+|root||mysql.sys|localhost|FIREWALL_EXEMPT|G
+|root||root||FIREWALL_EXEMPT|G
+|root||jinli||FLUSH_OPTIMIZER_COSTS|G
+|root||root||FLUSH_OPTIMIZER_COSTS|G
+|root||jinli||FLUSH_STATUS|G
+|root||root||FLUSH_STATUS|G
+|root||jinli||FLUSH_TABLES|G
+|root||root||FLUSH_TABLES|G
+|root||jinli||FLUSH_USER_RESOURCES|G
+|root||root||FLUSH_USER_RESOURCES|G
+|root||jinli||GROUP_REPLICATION_ADMIN|G
+|root||root||GROUP_REPLICATION_ADMIN|G
+|root||jinli||GROUP_REPLICATION_STREAM|G
+|root||root||GROUP_REPLICATION_STREAM|G
+|root||jinli||INDEX|G
+|root||root||INDEX|G
+|root||jinli||INNODB_REDO_LOG_ARCHIVE|G
+|root||root||INNODB_REDO_LOG_ARCHIVE|G
+|root||jinli||INNODB_REDO_LOG_ENABLE|G
+|root||root||INNODB_REDO_LOG_ENABLE|G
+|root||jinli||INSERT|G
+|root||root||INSERT|G
+|root||jinli||LOCK TABLES|G
+|root||root||LOCK TABLES|G
+|root||jinli||PASSWORDLESS_USER_ADMIN|G
+|root||root||PASSWORDLESS_USER_ADMIN|G
+|root||jinli||PERSIST_RO_VARIABLES_ADMIN|G
+|root||mysql.session|localhost|PERSIST_RO_VARIABLES_ADMIN|G
+|root||root||PERSIST_RO_VARIABLES_ADMIN|G
+|root||jinli||PROCESS|G
+|root||root||PROCESS|G
+|root||jinli||REFERENCES|G
+|root||root||REFERENCES|G
+|root||jinli||RELOAD|G
+|root||root||RELOAD|G
+|root||jinli||REPLICATION CLIENT|G
+|root||root||REPLICATION CLIENT|G
+|root||jinli||REPLICATION SLAVE|G
+|root||root||REPLICATION SLAVE|G
+|root||jinli||REPLICATION_APPLIER|G
+|root||root||REPLICATION_APPLIER|G
+|root||jinli||REPLICATION_SLAVE_ADMIN|G
+|root||root||REPLICATION_SLAVE_ADMIN|G
+|root||jinli||RESOURCE_GROUP_ADMIN|G
+|root||root||RESOURCE_GROUP_ADMIN|G
+|root||jinli||RESOURCE_GROUP_USER|G
+|root||root||RESOURCE_GROUP_USER|G
+|root||jinli||ROLE_ADMIN|G
+|root||root||ROLE_ADMIN|G
+|root||jinli||SELECT|G
+|root||mysql.infoschema|localhost|SELECT|G
+|root||root||SELECT|G
+|root||jinli||SENSITIVE_VARIABLES_OBSERVER|G
+|root||root||SENSITIVE_VARIABLES_OBSERVER|G
+|root||jinli||SERVICE_CONNECTION_ADMIN|G
+|root||root||SERVICE_CONNECTION_ADMIN|G
+|root||jinli||SESSION_VARIABLES_ADMIN|G
+|root||mysql.session|localhost|SESSION_VARIABLES_ADMIN|G
+|root||root||SESSION_VARIABLES_ADMIN|G
+|root||jinli||SET_ANY_DEFINER|G
+|root||root||SET_ANY_DEFINER|G
+|root||jinli||SHOW DATABASES|G
+|root||root||SHOW DATABASES|G
+|root||jinli||SHOW VIEW|G
+|root||root||SHOW VIEW|G
+|root||jinli||SHOW_ROUTINE|G
+|root||root||SHOW_ROUTINE|G
+|root||jinli||SHUTDOWN|G
+|root||mysql.session|localhost|SHUTDOWN|G
+|root||root||SHUTDOWN|G
+|root||jinli||SUPER|G
+|root||mysql.session|localhost|SUPER|G
+|root||root||SUPER|G
+|root||jinli||SYSTEM_USER|G
+|root||mysql.infoschema|localhost|SYSTEM_USER|G
+|root||mysql.session|localhost|SYSTEM_USER|G
+|root||mysql.sys|localhost|SYSTEM_USER|G
+|root||root||SYSTEM_USER|G
+|root||jinli||SYSTEM_VARIABLES_ADMIN|G
+|root||mysql.session|localhost|SYSTEM_VARIABLES_ADMIN|G
+|root||root||SYSTEM_VARIABLES_ADMIN|G
+|root||jinli||TABLE_ENCRYPTION_ADMIN|G
+|root||root||TABLE_ENCRYPTION_ADMIN|G
+|root||jinli||TELEMETRY_LOG_ADMIN|G
+|root||root||TELEMETRY_LOG_ADMIN|G
+|root||jinli||TRANSACTION_GTID_TAG|G
+|root||root||TRANSACTION_GTID_TAG|G
+|root||jinli||TRIGGER|G
+|root||root||TRIGGER|G
+|root||jinli||UPDATE|G
+|root||root||UPDATE|G
+|root||jinli||XA_RECOVER_ADMIN|G
+|root||root||XA_RECOVER_ADMIN|G
+|root||jinli||grant option|G
+|root||root||grant option|G
+performance_schema|schema||mysql.session|localhost|SELECT|G
+sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
+      <ServerVersion>8.3.0</ServerVersion>
+    </root>
     <collation id="2" parent="1" name="armscii8_general_ci">
       <Charset>armscii8</Charset>
       <DefaultForCharset>1</DefaultForCharset>
@@ -914,7 +1078,8 @@
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="292" parent="1" name="view">
-      <LastIntrospectionLocalTimestamp>2024-05-20.08:13:02</LastIntrospectionLocalTimestamp>
+      <Current>1</Current>
+      <LastIntrospectionLocalTimestamp>2024-05-22.12:36:38</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="293" parent="1" name="jinli">
@@ -1210,7 +1375,7 @@ buyer</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="360" parent="303" name="id">
-      <AutoIncrement>31</AutoIncrement>
+      <AutoIncrement>33</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
