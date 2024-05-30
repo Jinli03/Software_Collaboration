@@ -96,7 +96,7 @@ export default {
     //购买
     handlePurchase(id) {
       this.$confirm('确定购买?', '确认', {type: "warning"}).then(response => {
-        this.$request.put('/exchange/purchaseShelves/' + id, { buyer: '已购买' }).then(res => {
+        this.$request.put('/exchange/purchaseShelves/' + id, { state: '已购买' }).then(res => {
           if (res.code === '200') {
             this.load(1);
             this.$message.success('购买成功');

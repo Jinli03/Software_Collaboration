@@ -176,7 +176,7 @@ public class ExchangeController {
 
         // 如果找到了书籍记录，则更新其购买状态为已购买
         if (book != null) {
-            book.setBuyer("已购买");
+            book.setState("已购买");
             exchangeService.updateById(book);
             return Result.success("购买成功！");
         } else {
