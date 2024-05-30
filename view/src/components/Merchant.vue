@@ -232,15 +232,15 @@ export default {
     },
     onShelves() {
       this.state = "上架"
-      this.checkState()
+      this.checkMerchantState()
     },
     removeShelves() {
       this.state = "下架"
-      this.checkState()
+      this.checkMerchantState()
     },
     bought() {
       this.state = "已购买"
-      this.checkState()
+      this.checkMerchantState()
     },
     wrong() {
       this.state = "不合规"
