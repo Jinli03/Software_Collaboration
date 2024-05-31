@@ -17,8 +17,47 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="16">
-          .
+        <el-col :span="25">
+          <!-- Conditional content based on state -->
+          <div v-if="state === '购买'">
+            <!-- Display purchasing content -->
+            <el-row :gutter="5" style="padding: 5px">
+              <el-col :span="5" v-for="form in forms" :key="form.id" style="padding:12px">
+                <el-card class="card-item" style="background-size: cover;width: 200px;height:300px">
+                  <div slot="header" class="header-image" :style="{ backgroundImage: 'url(' + form.picture + ')' }"></div>
+                  <div style="color: black;display: flex;">
+                    <div style=";white-space: nowrap">
+                      <span>{{ form.name }}</span><br>
+                      <span>￥</span>
+                      <span>{{ form.price }}</span>
+                      <br>
+                      <span>{{ form.sub }}</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; justify-content: space-between;position: relative;width: 100%;height: 100%">
+                      <el-button icon="el-icon-plus" circle style="position: absolute;top: -15px;right: -5px" @click="handleAdd(form.id)"></el-button>
+                      <el-button style="position: absolute;top:30px;right: -15px" slot="reference" @click="handleBuy(form.id)">购买</el-button>
+                    </div>
+                  </div>
+                </el-card>
+              </el-col>
+            </el-row>
+          </div>
+          <div v-if="state === '收藏'">
+            <!-- Display collection content -->
+            <!-- Add your collection content here -->
+          </div>
+          <div v-if="state === '已购买'">
+            <h2>已购买页面</h2>
+            <el-table :data="forms" stripe :header-cell-style="{backgroundColor: 'aliceblue', fontWeight: 'bold', color: '#666'}" @selection-change="handleSelectionChange" style="width: 100%">
+              <el-table-column type="selection" align="center"></el-table-column>
+              <el-table-column label="id" prop="id" align="center"></el-table-column>
+              <el-table-column label="商家" prop="boss" align="center"></el-table-column>
+              <el-table-column label="书名" prop="name" align="center"></el-table-column>
+              <el-table-column label="价格" prop="price" align="center"></el-table-column>
+              <el-table-column label="科目" prop="sub" align="center"></el-table-column>
+              <el-table-column label="描述" prop="des" align="center"></el-table-column>
+            </el-table>
+          </div>
         </el-col>
         <el-col :span="4">
           <div style="margin: 10px 0">
@@ -34,64 +73,12 @@
         </el-col>
       </el-row>
     </div>
-
-    <el-row :gutter="5" style="padding: 5px">
-      <el-col :span="5" v-for="form in forms" :key="form.id" style="  padding:12px">
-        <el-card class="card-item" style="background-size: cover;width: 200px;height:300px" >
-          <div slot="header" class="header-image"  :style="{ backgroundImage: 'url(' + form.picture + ')' }">
-
-
-          </div>
-          <div style="color: black;display: flex;">
-
-
-            <div style=";white-space: nowrap">
-              <span>{{ form.name}}</span><br>
-              <span>￥</span>
-              <span>{{ form.price }}</span>
-              <br>
-              <span >{{ form.sub }}</span>
-            </div>
-
-
-            <div style="display: flex; flex-direction: column; justify-content: space-between;position: relative;width: 100%;height: 100%">
-              <el-button  icon="el-icon-plus" circle style="position: absolute;top: -15px;right: -5px" @click="handleAdd(form.id)"></el-button>
-
-              <el-button style="position: absolute;top:30px;right: -15px" slot="reference" @click="handleBuy(form.id)" >购买</el-button>
-
-            </div>
-          </div>
-        </el-card>
-      </el-col>
-
-      <div v-if="state === '已购买'">
-        <h2>已购买页面</h2>
-        <el-table :data="forms" stripe :header-cell-style="{backgroundColor: 'aliceblue', fontWeight: 'bold', color: '#666'}" @selection-change="handleSelectionChange" style="width: 100%">
-          <el-table-column type="selection" align="center"></el-table-column>
-          <el-table-column label="id" prop="id" align="center"></el-table-column>
-          <el-table-column label="商家" prop="boss" align="center"></el-table-column>
-          <el-table-column label="书名" prop="name" align="center"></el-table-column>
-          <el-table-column label="价格" prop="price" align="center"></el-table-column>
-          <el-table-column label="科目" prop="sub" align="center"></el-table-column>
-          <el-table-column label="描述" prop="des" align="center"></el-table-column>
-          <el-table-column label="状态" align="center">
-            <template v-slot="scope">
-              <el-button size="mini" type="success" plain disabled>上架</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
-
-    </el-row>
   </div>
-
 </template>
 
 <script>
 export default {
   name: "User",
-  props: {},
-  components: {},
   data() {
     return {
       radio: '1',
@@ -100,36 +87,30 @@ export default {
       pageNum: 1,
       pageSize: 12,
       total: 0, // 添加total属性
-      state: ''
+      state: '购买' // 初始化为 '购买'
     }
-  },
-  created() {
   },
   mounted() {
     this.load(1)
   },
   methods: {
     purchased() {
-      this.state = "已购买"
-      this.checkMerchantState()
+      this.state = "已购买";
+      this.checkMerchantState();
     },
-
-
-
     checkMerchantState() {
       this.$request.get(`/exchange/selectByMerchantState`, {
         params: {
           pageNum: this.pageNum,
           pageSize: this.pageSize,
           state: this.state,
-          boss: this.user.name
         }
       })
           .then(res => {
             // 请求成功处理
-            console.log(res.data.records) // 打印返回的数据
+            console.log(res.data.records); // 打印返回的数据
             // 这里可以将返回的数据赋值给组件中的 data 属性，供页面渲染使用
-            this.forms = res.data.records
+            this.forms = res.data.records;
             this.total = res.data.total;
           })
           .catch(error => {
@@ -137,27 +118,22 @@ export default {
             console.error('Error fetching books:', error);
           });
     },
-
-
-
     handleAdd(id) {
-        this.$request.put('/exchange/AddToShopCar/' + id, { shopcar:'是' }).then(res => {
-          if (res.code === '200') {
-            this.load(1);
-            this.$notify({
-              message:"成功加入购物车",
-              type:'success'
-            })
-
-          } else {
-            this.$message.error(res.msg);
-          }
-        }).catch(error => {
-          console.error('添加请求失败:', error);
-          this.$message.error('添加请求失败');
-        })
+      this.$request.put('/exchange/AddToShopCar/' + id, { shopcar:'是' }).then(res => {
+        if (res.code === '200') {
+          this.load(1);
+          this.$notify({
+            message:"成功加入购物车",
+            type:'success'
+          });
+        } else {
+          this.$message.error(res.msg);
+        }
+      }).catch(error => {
+        console.error('添加请求失败:', error);
+        this.$message.error('添加请求失败');
+      });
     },
-
     handleBuy(id) {
       this.$confirm('确定购买?', '确认', {type: "warning"}).then(response => {
         this.$request.put('/exchange/purchaseShelves/' + id, { state: '已购买' }).then(res => {
@@ -174,7 +150,6 @@ export default {
         });
       }).catch(() => {});
     },
-
     open1(){
       this.$notify({
         title: '成功',
@@ -182,13 +157,12 @@ export default {
         type: 'success'
       });
     },
-
     handleClick(tab, event) {
       console.log(tab, event);
     },
     load(pageNum) {
       if (pageNum) {
-        this.pageNum = pageNum
+        this.pageNum = pageNum;
       }
       this.$request.get('/exchange/allBooks', {
         params: {
@@ -197,9 +171,8 @@ export default {
         }
       }).then(res => {
         if (res.data) {
-          this.forms = res.data;
-          console.log('Response data:', this.forms);
-          this.total = res.data.total;
+          this.forms = res.data.records || res.data; // Update here to handle nested data
+          this.total = res.data.total || res.total; // Update here to handle nested total
         } else {
           this.forms = [];
           this.total = 0;
@@ -208,14 +181,18 @@ export default {
     },
     handleCurrentChange(pageNum) {
       this.pageNum = pageNum;
-      this.load(pageNum); // 传递pageNum参数
+      if (this.state === '已购买') {
+        this.checkMerchantState();
+      } else {
+        this.load(pageNum); // 传递pageNum参数
+      }
     },
   },
 }
 </script>
 
 <style>
-.header-image{
+.header-image {
   background-size: cover;
   background-position: center;
   color: black;
