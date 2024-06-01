@@ -93,6 +93,56 @@ public class ExchangeController {
         return Result.success(page);
     }
 
+    @ApiOperation("查询所有上架未出售的图书")
+    @GetMapping("/selectByNotBoughtBooks")
+    public Result selectByNotBoughtBooks(
+            @RequestParam Integer pageNum,
+            @RequestParam Integer pageSize,
+            @RequestParam String state
+    ) {
+        QueryWrapper<Exchange> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("state", state);
+
+        // 执行分页查询
+        Page<Exchange> page = exchangeService.page(new Page<>(pageNum, pageSize), queryWrapper);
+
+        // 从分页查询结果中获取记录列表
+        List<Exchange> records = page.getRecords();
+
+        // 对记录列表进行处理（如果需要的话）
+        for (Exchange record : records) {
+            // 这里可以添加需要的逻辑
+        }
+
+        return Result.success(page);
+    }
+
+    @ApiOperation("根据state和buyer查询本人已购买的图书")
+    @GetMapping("/selectByUserState")
+    public Result selectByStateAndBuyer(
+            @RequestParam Integer pageNum,
+            @RequestParam Integer pageSize,
+            @RequestParam String state,
+            @RequestParam String buyer
+    ) {
+        QueryWrapper<Exchange> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("state", state)
+                .eq("buyer", buyer);
+
+        // 执行分页查询
+        Page<Exchange> page = exchangeService.page(new Page<>(pageNum, pageSize), queryWrapper);
+
+        // 从分页查询结果中获取记录列表
+        List<Exchange> records = page.getRecords();
+
+        // 对记录列表进行处理（如果需要的话）
+        for (Exchange record : records) {
+            // 这里可以添加需要的逻辑
+        }
+
+        return Result.success(page);
+    }
+
     @ApiOperation("根据state查询所有图书")
     @GetMapping("/selectByManagerState")
     public Result selectByManagerState(
@@ -169,20 +219,23 @@ public class ExchangeController {
 
 
     @ApiOperation("根据id购买书籍")
-    @PutMapping ("/purchaseShelves/{id}")
-    public Result purchase(@PathVariable Integer id) {
+    @PutMapping("/purchaseShelves/{id}")
+    public Result purchase(@PathVariable Integer id, @RequestParam("name") String name) {
         // 根据ID查询对应的书籍记录
         Exchange book = exchangeService.getById(id);
 
-        // 如果找到了书籍记录，则更新其购买状态为已购买
+        // 如果找到了书籍记录，则更新其购买状态为已购买，并设置购买者
         if (book != null) {
             book.setState("已购买");
+            book.setBuyer(name); // 设置购买者
             exchangeService.updateById(book);
             return Result.success("购买成功！");
         } else {
             return Result.error("购买失败");
         }
     }
+
+
 
 
 
