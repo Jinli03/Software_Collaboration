@@ -96,7 +96,7 @@ export default {
     }
   },
   mounted() {
-    this.load(1)
+    this.purchase()
   },
   methods: {
     purchase() {

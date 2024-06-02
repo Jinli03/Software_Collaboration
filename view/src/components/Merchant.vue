@@ -10,23 +10,23 @@
         <div style="display: flex">
           <el-row>
             <div style="display: flex; flex-wrap: wrap; margin-top: 20px; height: auto;">
+              <div style="margin-right: 10px; margin-bottom: 10px;" @click="newOne">
+                <el-radio v-model="radio" label="1">新增</el-radio>
+              </div>
               <div style="margin-right: 10px; margin-bottom: 10px;" @click="noChecked">
-                <el-radio v-model="radio" label="1" >待检查</el-radio>
+                <el-radio v-model="radio" label="2" >待检查</el-radio>
               </div>
               <div style="margin-right: 10px; margin-bottom: 10px;" @click="onShelves">
-                <el-radio v-model="radio" label="2">上架</el-radio>
+                <el-radio v-model="radio" label="3">上架</el-radio>
               </div>
               <div style="margin-right: 10px; margin-bottom: 10px;" @click="bought">
-                <el-radio v-model="radio" label="3">已购买</el-radio>
+                <el-radio v-model="radio" label="4">已购买</el-radio>
               </div>
               <div style="margin-right: 10px; margin-bottom: 10px;" @click="removeShelves">
-                <el-radio v-model="radio" label="4">下架</el-radio>
+                <el-radio v-model="radio" label="5">下架</el-radio>
               </div>
               <div style="margin-right: 10px; margin-bottom: 10px;" @click="wrong">
-                <el-radio v-model="radio" label="5">不合规</el-radio>
-              </div>
-              <div style="margin-right: 10px; margin-bottom: 10px;" @click="newOne">
-                <el-radio v-model="radio" label="6">新增</el-radio>
+                <el-radio v-model="radio" label="6">不合规</el-radio>
               </div>
             </div>
           </el-row>
@@ -106,7 +106,7 @@
           <el-table-column label="描述" prop="des" align="center"></el-table-column>
           <el-table-column label="状态" align="center">
             <template v-slot="scope">
-              <el-button size="mini" type="success" plain disabled>上架</el-button>
+              <el-button size="mini" type="success" plain disabled>已购买</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -215,7 +215,7 @@ export default {
           {required: true, message: '请输入描述', trigger: 'blur'}
         ],
       },
-      state: '待检查',
+      state: '新增',
     }
   },
   created() {
@@ -224,7 +224,7 @@ export default {
 
   mounted() {
     this.load(1)
-    this.noChecked()
+    this.newOne()
   },
   methods: {
     noChecked() {
