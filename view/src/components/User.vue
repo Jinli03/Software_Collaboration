@@ -149,6 +149,20 @@ export default {
           });
     },
 
+    handleAdd(id) {
+      this.$request.put('/exchange/AddToShopCar/' + id, { shopcar:'是' }).then(res => {
+        if (res.code === '200') {
+          this.load(1);
+          this.$notify({
+            message: "成功加入购物车",
+            type: 'success'
+          });
+        } else {
+          this.$message.error(res.msg);
+        }
+      });
+    },
+
     handleBuy(id) {
       const buyerName = this.user.name; // Assuming this.user contains buyer information
       this.$confirm('确定购买?', '确认', {type: "warning"}).then(response => {
