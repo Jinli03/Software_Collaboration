@@ -283,6 +283,13 @@ public class ExchangeController {
         }
     }
 
+    @ApiOperation("根据shopcar查询所有图书")
+    @GetMapping("/selectByShopcar")
+    public Result selectByShopcar() {
+        List<Exchange> exchanges = exchangeService.list(new QueryWrapper<Exchange>()
+                .eq("shopcar", "是"));
+        return Result.success(exchanges);
+    }
 
 
 

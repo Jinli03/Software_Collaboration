@@ -35,7 +35,7 @@
     </el-container>
     <!--购物车-->
     <div class="fixed-button-container">
-      <el-button circle size="medium" icon="el-icon-shopping-cart-1" @click="drawer = true" />
+      <el-button circle size="medium" icon="el-icon-shopping-cart-1" @click="handleShopcar" />
     </div>
 
     <el-drawer
@@ -44,7 +44,7 @@
         :with-header="false"
         width="50%">
       <span>购物车</span>
-      <el-table :data="forms" stripe :header-cell-style="{backgroundColor: 'aliceblue', fontWeight: 'bold', color: '#666'}" @selection-change="handleSelectionChange" >
+      <el-table :data="shopcar" stripe :header-cell-style="{backgroundColor: 'aliceblue', fontWeight: 'bold', color: '#666'}" @selection-change="handleSelectionChange" >
         <el-table-column type="selection" align="center"></el-table-column>
         <el-table-column label="id" prop="id" align="center"></el-table-column>
         <el-table-column label="书名" prop="name" align="center"></el-table-column>
@@ -80,6 +80,7 @@ export default {
       value: [300, 350],
       activeName: 'first',
       forms:[],
+      shopcar:[]
     }
   },
   created() {
@@ -92,6 +93,18 @@ export default {
 
   },
   methods: {
+
+    handleShopcar() {
+      this.drawer = true
+      this.$request.get('/exchange/selectByShopcar', {
+      }).then(res => {
+        if (res.data) {
+          this.shopcar = res.data;
+          console.log('Response data:', this.forms);
+        } else {
+        }
+      });
+    },
 
     //购买
     handlePurchase(id) {

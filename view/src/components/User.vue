@@ -152,7 +152,7 @@ export default {
     handleAdd(id) {
       this.$request.put('/exchange/AddToShopCar/' + id, { shopcar:'是' }).then(res => {
         if (res.code === '200') {
-          this.load(1);
+          this.purchase()
           this.$notify({
             message: "成功加入购物车",
             type: 'success'
