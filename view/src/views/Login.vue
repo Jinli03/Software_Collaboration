@@ -2,11 +2,11 @@
   <div class="login-page">
     <div class="login-container">
       <div class="login-image">
-        <img src="@/assets/login.png" alt="login">
+        <img src="@/assets/appoint.png" alt="login">
       </div>
       <div class="form-container">
         <el-form :model="user" :rules="rules" ref="loginRef">
-          <div class="form-header">欢迎登录考研分析局</div>
+          <div class="form-header">医院预约系统</div>
           <el-form-item prop="name" class="form-item">
             <el-input prefix-icon="el-icon-user" size="medium" placeholder="请输入账号" v-model="user.name" @keyup.enter.native="login"></el-input>
           </el-form-item>
@@ -15,8 +15,9 @@
           </el-form-item>
           <el-form-item prop="code" class="form-item">
             <div class="code-container">
-              <el-input prefix-icon="el-icon-check" size="medium" placeholder="请输入验证码(小写)" v-model="user.code" @keyup.enter.native="login"></el-input>
-              <valid-code @update:value="getCode" class="valid-code"></valid-code>
+                <el-radio v-model="user.actor" label='admin'>管理员</el-radio>
+                <el-radio v-model="user.actor" label='doctor'>医生</el-radio>
+                <el-radio v-model="user.actor" label='patient'>患者</el-radio>
             </div>
           </el-form-item>
           <el-form-item class="form-actions">
@@ -44,7 +45,7 @@
       </div>
     </div>
     <div class="footer">
-      &copy; 2024 @Jinli @hfy | 考研分析局.
+      &copy; 2024 @Jinli | XX医院版权所有.
     </div>
   </div>
 </template>
@@ -58,15 +59,15 @@ export default {
     ValidCode
   },
   data() {
-    const validateCode = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入验证码'));
-      } else if (value.toLowerCase() !== this.code) {
-        callback(new Error('验证码错误'));
-      } else {
-        callback()
-      }
-    }
+    // const validateCode = (rule, value, callback) => {
+    //   if (value === '') {
+    //     callback(new Error('请输入验证码'));
+    //   } else if (value.toLowerCase() !== this.code) {
+    //     callback(new Error('验证码错误'));
+    //   } else {
+    //     callback()
+    //   }
+    // }
     return {
       code: '',
       forgetUserForm: {},
@@ -74,6 +75,7 @@ export default {
         name: '',
         password: '',
         code: '',
+        actor: 'admin'
       },
       formLabelWidth: '100px',
       forgetPassDialogVis: false,
@@ -85,9 +87,9 @@ export default {
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' }
         ],
-        code: [
-          { validator: validateCode, trigger: 'blur' }
-        ]
+        // code: [
+        //   { validator: validateCode, trigger: 'blur' }
+        // ]
       }
     }
   },
@@ -113,18 +115,36 @@ export default {
         if (valid) {
           this.$request.post("/login", this.user).then(res => {
             if (res.code === '200') {
-              this.$router.push('/')
-              this.$message.success('登陆成功')
-              localStorage.setItem("pilot", JSON.stringify(res.data))
+              // 登录成功处理
+              this.$message.success('登录成功');
+              localStorage.setItem("pilot", JSON.stringify(res.data));
+
+              // 根据角色跳转到不同页面
+              switch (this.user.actor) {
+                case 'admin':
+                  this.$router.push('/admin'); // 管理员页面路径
+                  break;
+                case 'doctor':
+                  this.$router.push('/doctor'); // 医生页面路径
+                  break;
+                case 'patient':
+                  this.$router.push('/patient'); // 患者页面路径
+                  break;
+                default:
+                  this.$router.push('/'); // 默认跳转路径
+                  break;
+              }
+
             } else {
-              this.$message.error(res.msg)
+              this.$message.error(res.msg);
             }
-          })
+          });
         } else {
           return false;
         }
       });
     },
+
   }
 }
 </script>
@@ -149,12 +169,14 @@ export default {
 
 .login-image {
   flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100%; /* 根据需要调整宽度 */
+  height: auto;
 }
 
 .form-container {

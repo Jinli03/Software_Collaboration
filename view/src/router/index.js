@@ -44,6 +44,9 @@ const routes = [
       { path: 'password', name: 'Password', meta: { name: '修改密码'}, component: () => import('../views/home/Password.vue')},
       { path: 'subinfo', name: 'Subinfo', meta: { name: '专业详情'}, component: () => import('../views/home/Subinfo.vue')},
       { path: 'foruminfo', name: 'Foruminfo', meta: { name: '评论区'}, component: () => import('../views/home/Foruminfo.vue')},
+      { path: 'admin', name: 'Admin', meta: { name: '管理员'}, component: () => import('../views/home/Admin.vue')},
+      { path: 'doctor', name: 'Doctor', meta: { name: '医生'}, component: () => import('../views/home/Doctor.vue')},
+      { path: 'patient', name: 'Patient', meta: { name: '患者'}, component: () => import('../views/home/Patient.vue')},
     ]
   },
   { path: '/element', name: 'Element', meta: { name: 'element'}, component: () => import('../views/Element.vue')},

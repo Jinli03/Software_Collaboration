@@ -31,7 +31,6 @@
             <artifactId>mybatis-plus-generator</artifactId>
             <version>3.4.1</version>
         </dependency>
-        <!--  https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-annotation  -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-annotation</artifactId>
@@ -41,7 +40,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.23</version>
-            <!--  使用适当的版本  -->
         </dependency>
         <dependency>
             <groupId>com.mysql</groupId>
@@ -60,27 +58,14 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!--  引入热部署jar包  -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
-            <!--  IntelliJ IDEA本地测试这个true、false热部署都有效  -->
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.7.3</version>
-            <!--  使用你需要的版本  -->
         </dependency>
-
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
@@ -96,21 +81,6 @@
             <artifactId>java-jwt</artifactId>
             <version>3.4.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>4.1.2</version>
-        </dependency>
-        <!--         <dependency> -->
-        <!--             <groupId>io.springfox</groupId> -->
-        <!--             <artifactId>springfox-swagger-ui</artifactId> -->
-        <!--             <version>2.9.2</version> -->
-        <!--         </dependency> -->
-        <!--         <dependency> -->
-        <!--         <groupId>io.springfox</groupId> -->
-        <!--         <artifactId>springfox-swagger2</artifactId> -->
-        <!--         <version>2.9.2</version> -->
-        <!--         </dependency> -->
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-spring-boot-starter</artifactId>

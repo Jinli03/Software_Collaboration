@@ -163,5 +163,65 @@ public class UserController {
         return Result.success();
     }
 
+    @ApiOperation("查询全部医生数据")
+    @GetMapping("/selectAllAdmins")
+    public Result selectAllAdmins() {
+        // 创建 QueryWrapper 对象，并添加查询条件
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("role", "admin"); // 查询 role 字段为 doctor 的记录，并按 id 降序排序
+
+        // 调用 userService 的 list 方法进行查询
+        List<User> admins = userService.list(queryWrapper);
+
+        // 返回查询结果
+        return Result.success(admins);
+    }
+    @ApiOperation("查询全部医生数据")
+    @GetMapping("/selectAllDoctors")
+    public Result selectAllDoctors() {
+        // 创建 QueryWrapper 对象，并添加查询条件
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("role", "doctor"); // 查询 role 字段为 doctor 的记录，并按 id 降序排序
+
+        // 调用 userService 的 list 方法进行查询
+        List<User> doctors = userService.list(queryWrapper);
+
+        // 返回查询结果
+        return Result.success(doctors);
+    }
+
+    @ApiOperation("查询全部医生数据")
+    @GetMapping("/selectAllPatients")
+    public Result selectAllPatients() {
+        // 创建 QueryWrapper 对象，并添加查询条件
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("role", "patient"); // 查询 role 字段为 doctor 的记录，并按 id 降序排序
+
+        // 调用 userService 的 list 方法进行查询
+        List<User> patients = userService.list(queryWrapper);
+
+        // 返回查询结果
+        return Result.success(patients);
+    }
+
+    @ApiOperation("根据ID查询医生信息")
+    @GetMapping("/selectDoctorByName")
+    public Result selectDoctorById(@RequestParam("name") String name) {
+        // 创建 QueryWrapper 对象，并添加查询条件
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("name", name).eq("role", "doctor");
+
+        // 调用 userService 的 getOne 方法进行查询
+        User doctor = userService.getOne(queryWrapper);
+
+        // 检查查询结果是否为空
+        if (doctor != null) {
+            // 返回查询结果
+            return Result.success(doctor);
+        } else {
+            // 返回错误信息
+            return Result.error("Doctor not found");
+        }
+    }
 
 }

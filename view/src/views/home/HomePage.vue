@@ -1,30 +1,38 @@
 <template>
-  <div class="background-image-container">
-    <div class="content-container">
-      <div class="image-container">
-        <div>
-          <img src="../../assets/222.png" alt="First Image" class="image image1" @click="$router.push('search')">
-          <p class="image-label" style="top: 650px; left: 430px;">分析局</p>
-        </div>
-        <div>
-          <img src="@/assets/333.png" alt="Second Image" class="image image2" @click="$router.push('personal')">
-          <p class="image-label" style="bottom: 430px; right: 380px;">个人档案局</p>
-        </div>
-        <div>
-          <img src="@/assets/444.png" alt="Third Image" class="image image3" @click="$router.push('exchange')">
-          <p class="image-label" style="bottom: 420px; left: 330px;">图书交易局</p>
-        </div>
-      </div>
-      <div class="watermark">&copy; Designed by Agency. Icons by icons8</div>
+  <el-container class="background-image-container">
+    <div style="backdrop-filter: blur(8px); width: 95%; height: 95%; border-radius: 2%;">
+      <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="图书商城" name="first" @click="load(1)">
+          <User/>
+        </el-tab-pane>
+        <el-tab-pane label="检查" name="second" v-if="user.role === '管理员'" @click="load1(1)">
+          <Manager/>
+        </el-tab-pane>
+        <el-tab-pane label="上传" name="third" v-if="user.role === '商家'">
+          <Merchant/>
+        </el-tab-pane>
+      </el-tabs>
     </div>
-  </div>
+  </el-container>
 </template>
 
 <script>
+import Merchant from "@/components/Merchant.vue";
+import User from "@/components/User.vue";
+import Manager from "@/components/Manager.vue";
+
 export default {
   name: "HomePage",
+  components: {Manager, User, Merchant},
   data() {
-    return {};
+    return {
+      drawer:false,
+      user: JSON.parse(localStorage.getItem('pilot') || '{}'),
+      value: [300, 350],
+      activeName: 'first',
+      forms:[],
+      shopcar:[]
+    };
   },
 };
 </script>

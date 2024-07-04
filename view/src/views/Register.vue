@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="footer">
-      &copy; 2024 @Jinli @hfy | 考研分析局.
+      &copy; 2024 @Jinli  | XX医院版权所有.
     </div>
   </div>
 </template>

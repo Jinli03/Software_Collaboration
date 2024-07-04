@@ -118,6 +118,28 @@ public class UserService extends ServiceImpl<UserMapper, User> {
         return super.save(entity);
     }
 
+    public User getByName(String name) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("name", name);
+        return userMapper.selectOne(queryWrapper);
+    }
+
+    public User setBalance(String name, int balance) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("name", name);
+        User user = userMapper.selectOne(queryWrapper);
+
+        if (user != null) {
+            user.setBalance(balance); // 设置余额
+        }
+        return user;
+    }
+
+    public void updateUser(User user) {
+        // 使用 MyBatis Plus 的 update 方法更新用户信息
+        this.updateById(user);
+    }
+
 
 //    public boolean removeById(User entity) {
 //        User currentUser = TokenUtils.getCurrentUser();

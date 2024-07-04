@@ -8,18 +8,11 @@
       <jdbc-url>jdbc:mysql://106.54.241.107:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="view@106.54.241.107" uuid="258d2e1b-9099-4d54-85d0-4a8926250dd7">
+    <data-source source="LOCAL" name="@localhost" uuid="933e32b6-8a13-408b-8543-e8487dc1eaec">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>$PROJECT_DIR$/springboot/src/main/resources/application.yml</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://106.54.241.107:3306/view?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false</jdbc-url>
-      <jdbc-additional-properties>
-        <property name="com.intellij.clouds.kubernetes.db.host.port" />
-        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
-        <property name="com.intellij.clouds.kubernetes.db.container.port" />
-      </jdbc-additional-properties>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

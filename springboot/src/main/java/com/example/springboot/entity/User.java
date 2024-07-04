@@ -23,14 +23,25 @@ public class User {
     private String name;
     @Alias("密码")
     private String password;
+    @Alias("角色")
+    private String role;
+    @Alias("描述")
+    private String des;
+    @Alias("挂号费")
+    private String money;
     @Alias("电话")
     private String phone;
     @Alias("邮箱")
     private String email;
+    @Alias("部门")
+    private String department;
+    @Alias("职位")
+    private String position;
+    @Alias("余额")
+    private int balance;
     @Alias("头像")
     private String title;
-    @Alias("角色")
-    private String role;
+
 
     @TableField(exist = false)
     private String token;
