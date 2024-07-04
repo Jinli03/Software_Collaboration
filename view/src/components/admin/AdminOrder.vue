@@ -32,7 +32,6 @@
                   <div style="color: black;">
                     <p>.</p>
                     <p>.</p>
-                    <el-button type="primary">挂号</el-button>
                   </div>
                 </el-card>
               </el-col>
@@ -58,10 +57,11 @@
               <el-table-column label="name" prop="name" align="center"></el-table-column>
               <el-table-column label="doctor" prop="doctor" align="center"></el-table-column>
               <el-table-column label="department" prop="department" align="center"></el-table-column>
+              <el-table-column label="time" prop="time" align="center"></el-table-column>
               <el-table-column label="state" prop="state" align="center"></el-table-column>
               <el-table-column label="操作" align="center">
                 <template v-slot="scope">
-                  <el-button size="mini" type="primary" plain @click="handleEdit(scope.row)">编辑</el-button>
+                  <el-button size="mini" type="primary" plain @click="handleEdit(scope.row.id)">编辑</el-button>
                   <el-button size="mini" type="danger" plain @click="del(scope.row.id)">删除</el-button>
                 </template>
               </el-table-column>
@@ -69,6 +69,35 @@
           </div>
         </el-tab-pane>
       </el-tabs>
+    </div>
+    <div>
+      <el-dialog title="信息" :visible.sync="recordVisible" width="70%">
+        <el-form :model="record" :rules="rules" ref="formRef" label-width="80px" style="padding-right: 20px">
+          <el-form-item label="name" prop="name">
+            <el-input v-model="record.name" placeholder="null"></el-input>
+          </el-form-item>
+          <el-form-item label="doctor" prop="doctor">
+            <el-input v-model="record.doctor" placeholder="null"></el-input>
+          </el-form-item>
+          <el-form-item label="department" prop="department">
+            <el-input v-model="record.department" placeholder="null"></el-input>
+          </el-form-item>
+          <el-form-item label="state" prop="state">
+            <el-select v-model="record.state" placeholder="请选择挂号状态">
+              <el-option
+                  v-for="item in options2"
+                  :key="item.value2"
+                  :label="item.label2"
+                  :value="item.value2">
+              </el-option>
+            </el-select>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="recordVisible = false">取 消</el-button>
+          <el-button type="primary" @click="save()">确 定</el-button>
+        </div>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -121,7 +150,9 @@ export default {
       }],
       value2: '',
       doctors: [],
-      records: []
+      records: [],
+      record: {},
+      recordVisible: false
     }
   },
   created() {
@@ -182,6 +213,56 @@ export default {
     reset2() {
       this.value2 = ''
       this.selectAllRecords()
+    },
+    getRecordById(id) {
+      this.$request.get('/records/getById', {
+        params: {
+          id: id
+        }
+      }).then(res => {
+        if (res.data) {
+          console.log('Record data:', res.data);
+          this.record = res.data;
+        } else {
+          console.error('No record found');
+        }
+      }).catch(error => {
+        console.error('Error fetching record:', error);
+      });
+    },
+    handleEdit(id) {
+      this.getRecordById(id)
+      this.recordVisible = true
+    },
+    save() {
+      this.$request.put('/records/updateRecord', this.record)
+          .then(res => {
+            if (res.data) {
+              this.$message.success('更新成功');
+              this.recordVisible = false;
+              this.reset2()
+              // Optionally, you can refresh the records list here
+            } else {
+              this.$message.error('更新失败');
+            }
+          })
+          .catch(error => {
+            console.error('Error updating user:', error);
+            this.$message.error('更新失败');
+          });
+    },
+    del(id) {
+      this.$confirm('确认删除?', '确认', {type: "warning"}).then(response =>{
+        this.$request.delete('/records/delete/' + id).then(res =>{
+
+          if (res.code === '200') {
+            this.$message.success('删除成功')
+            this.reset2()
+          } else {
+            this.$message.error(res.msg)
+          }
+        })
+      }).catch(() => {})
     },
     handleTabClick2(tab, event) {
       if (tab.name === 'first') {

@@ -8,16 +8,20 @@
     <el-tabs v-model="activeTab" @tab-click="handleTabClick3">
       <el-tab-pane label="我的挂号" name="first">
         <el-card>
-          <el-select v-model="value1" placeholder="请选择状态">
-            <el-option
-                v-for="item in options1"
-                :key="item.value1"
-                :label="item.label1"
-                :value="item.value1">
-            </el-option>
-          </el-select>
-          <el-button type="primary" @click="selectStateAndNameRecords()">查询</el-button>
-          <el-button type="warning" @click="reset1()">重置</el-button>
+
+            <el-card>
+              <el-select v-model="value1" placeholder="请选择状态">
+                <el-option
+                  v-for="item in options1"
+                  :key="item.value1"
+                  :label="item.label1"
+                  :value="item.value1">
+                </el-option>
+              </el-select>
+              <el-button type="primary" @click="selectStateAndNameRecords()">查询</el-button>
+              <el-button type="warning" @click="reset1()">重置</el-button>
+            </el-card>
+
           <div>
             <el-table :data="records" stripe :header-cell-style="{backgroundColor: 'aliceblue', fontWeight: 'bold', color: '#666'}">
               <el-table-column label="id" prop="id" align="center"></el-table-column>
@@ -27,7 +31,7 @@
               <el-table-column label="state" prop="state" align="center"></el-table-column>
               <el-table-column label="操作" align="center">
                 <template v-slot="scope">
-                  <el-button size="mini" type="primary" plain @click="call(scope.row.id)">叫号</el-button>
+                  <el-button size="mini" type="primary" plain v-if="scope.row.state === '待叫号' ? true : false" @click="call(scope.row.id)">叫号</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -199,7 +203,7 @@ export default {
     },
     handleTabClick3(tab) {
       if (tab.name === 'first') {
-        this.selectStateAndNameRecords();
+        this.reset1()
       }
       if (tab.name === 'second') {
         this.own();

@@ -13,6 +13,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.springboot.common.Result;
+import com.example.springboot.entity.Records;
 import com.example.springboot.entity.User;
 import com.example.springboot.service.UserService;
 import io.swagger.annotations.ApiOperation;
@@ -56,7 +57,12 @@ public class UserController {
     @PutMapping("/update")
     public Result update(@RequestBody User user) {
         userService.updateById(user);
-        return Result.success();
+        boolean updated = userService.updateById(user);
+        if (updated) {
+            return Result.success("更新成功");
+        } else {
+            return Result.error("更新失败");
+        }
     }
 
     //单个删除
@@ -221,6 +227,36 @@ public class UserController {
         } else {
             // 返回错误信息
             return Result.error("Doctor not found");
+        }
+    }
+
+    @ApiOperation("id寻找用户信息")
+    @GetMapping("/getById")
+    public Result getById(@RequestParam Integer id) {
+        // 根据 ID 查询实体对象
+        User user = userService.getById(id);
+
+        if (user == null) {
+            return Result.error("根据 ID 找不到记录");
+        }
+
+        // 返回查询结果
+        return Result.success(user);
+    }
+
+    @ApiOperation("更新用户余额")
+    @PutMapping("/updateBalance")
+    public Result updateBalance(@RequestParam String name, @RequestParam Integer balance) {
+        User user = userService.getByName(name);
+        if (user == null) {
+            return Result.error("用户未找到");
+        }
+        user.setBalance(user.getBalance() + balance); // 更新余额
+        boolean updated = userService.updateById(user);
+        if (updated) {
+            return Result.success("更新成功");
+        } else {
+            return Result.error("更新失败");
         }
     }
 

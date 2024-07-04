@@ -5,51 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe07aafa-7901-4ca4-afa6-e6b7bbb1a7e5" name="Changes" comment="优化了部分页面">
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/controller/DepartmentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/controller/PriodController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/controller/RecordsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/entity/Department.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/entity/Priod.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/entity/Records.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/mapper/DepartmentMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/mapper/PriodMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/mapper/RecordsMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/service/DepartmentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/service/PriodService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/service/RecordsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/src/assets/appoint.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/src/components/admin/AdminHomePage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/src/components/admin/AdminInformation.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/src/components/admin/AdminManager.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/src/components/admin/AdminOrder.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/src/components/doctor/DoctorHomePage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/src/components/doctor/DoctorInformation.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/src/components/doctor/DoctorOrder.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/src/components/patient/PatientHomePage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/src/components/patient/PatientOrder.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/src/views/home/Admin.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/src/views/home/Doctor.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/src/views/home/Patient.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/258d2e1b-9099-4d54-85d0-4a8926250dd7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9d2b00c0-3621-42b7-ac3e-06d6b5ed62c6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9d2b00c0-3621-42b7-ac3e-06d6b5ed62c6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024_5_22_14_41__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024_5_22_14_41__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024_5_22_18_46_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024_5_22_18_46__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/controller/PriodController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/controller/PriodController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/controller/RecordsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/controller/RecordsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/.env.development" beforeDir="false" afterPath="$PROJECT_DIR$/view/.env.development" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/views/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/src/views/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/views/Register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/src/views/home/HomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/views/home/HomePage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/view/vue.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/src/components/admin/AdminInformation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/components/admin/AdminInformation.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/src/components/admin/AdminManager.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/components/admin/AdminManager.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/src/components/admin/AdminOrder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/components/admin/AdminOrder.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/src/components/doctor/DoctorHomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/components/doctor/DoctorHomePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/src/components/doctor/DoctorOrder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/components/doctor/DoctorOrder.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/src/components/patient/PatientHomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/components/patient/PatientHomePage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,6 +161,7 @@
       <workItem from="1716969404931" duration="1369000" />
       <workItem from="1717493288094" duration="5736000" />
       <workItem from="1719801313462" duration="66412000" />
+      <workItem from="1720051248716" duration="14087000" />
     </task>
     <task id="LOCAL-00001" summary="优化登录页面">
       <option name="closed" value="true" />

@@ -187,6 +187,21 @@ public class RecordsController {
         return Result.success(records);
     }
 
+    @ApiOperation("管理员上传科室")
+    @PostMapping("/add")
+    public Result add(@RequestBody Records record) {
+        record.setDoctor(record.getDoctor());
+        record.setDepartment(record.getDepartment());
+        record.setTime(record.getTime());
+        // 保存到数据库
+        boolean isSaved = recordsService.save(record);
+        if (isSaved) {
+            return Result.success("上传成功");
+        } else {
+            return Result.error("排班上传失败");
+        }
+    }
+
     @ApiOperation("更新记录")
     @PutMapping("/updateRecord")
     public Result updateRecord(@RequestBody Records record) {
@@ -196,6 +211,13 @@ public class RecordsController {
         } else {
             return Result.error("更新失败");
         }
+    }
+
+    @ApiOperation("删除就诊记录")
+    @DeleteMapping("/delete/{id}")
+    public Result delete(@PathVariable Integer id) {
+        recordsService.removeById(id);
+        return Result.success();
     }
 
     @ApiOperation("计算每个科室的挂号次数")
@@ -256,6 +278,68 @@ public class RecordsController {
         return Result.success(result);
     }
 
+    @ApiOperation("根据医生查询待就诊记录数")
+    @GetMapping("/countPendingByDoctor")
+    public Result countPendingByDoctor(@RequestParam String doctor) {
+        // 创建 QueryWrapper 对象，并添加查询条件
+        QueryWrapper<Records> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("doctor", doctor)
+                .eq("state", "待叫号");
+
+        // 调用 recordsService 的 count 方法进行查询
+        int count = recordsService.count(queryWrapper);
+
+        // 返回查询结果
+        return Result.success(count);
+    }
+
+    @ApiOperation("根据医生查询待就诊记录数")
+    @GetMapping("/countAllByDoctor")
+    public Result countAllByDoctor(@RequestParam String doctor) {
+        // 创建 QueryWrapper 对象，并添加查询条件
+        QueryWrapper<Records> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("doctor", doctor);
+
+        // 调用 recordsService 的 count 方法进行查询
+        int count = recordsService.count(queryWrapper);
+
+        // 返回查询结果
+        return Result.success(count);
+    }
+
+    @ApiOperation("根据患者查询待就诊记录数")
+    @GetMapping("/countAllByPatient")
+    public Result countAllByPatient(@RequestParam String name) {
+        // 创建 QueryWrapper 对象，并添加查询条件
+        QueryWrapper<Records> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("name", name);
+
+        // 调用 recordsService 的 count 方法进行查询
+        int count = recordsService.count(queryWrapper);
+
+        // 返回查询结果
+        return Result.success(count);
+    }
+
+    @ApiOperation("查询符合传入name的id最大的那条记录所有信息")
+    @GetMapping("/selectMaxIdRecordByName")
+    public Result selectLatestRecordByName(@RequestParam String name) {
+        // 创建 QueryWrapper 对象，并添加查询条件
+        QueryWrapper<Records> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("name", name)
+                .orderByDesc("id")
+                .last("limit 1"); // 只取第一条记录
+
+        // 调用 recordsService 的 getOne 方法进行查询
+        Records record = recordsService.getOne(queryWrapper);
+
+        if (record == null) {
+            return Result.error("没有找到符合条件的记录");
+        }
+
+        // 返回查询结果
+        return Result.success(record);
+    }
 
 }
 

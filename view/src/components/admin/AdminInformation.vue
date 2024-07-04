@@ -22,8 +22,8 @@
                 <div style="color: black;">
                   <p>.</p>
                   <p>.</p>
-                  <el-button size="mini" type="primary" plain @click="handleEdit(department)">编辑</el-button>
-                  <el-button size="mini" type="danger" plain @click="del(department.id)">删除</el-button>
+                  <el-button size="mini" type="primary" plain @click="handleEditDepartment(department)">编辑</el-button>
+                  <el-button size="mini" type="danger" plain @click="delDepartment(department.id)">删除</el-button>
                 </div>
               </el-card>
             </el-col>
@@ -50,6 +50,9 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="排班信息" name="second">
+        <el-card>
+          <el-button type="success" @click="addPriod">新增</el-button>
+        </el-card>
         <div>
           <el-table :data="priods" stripe :header-cell-style="{backgroundColor: 'aliceblue', fontWeight: 'bold', color: '#666'}">
             <el-table-column label="doctor" prop="doctor" align="center"></el-table-column>
@@ -58,6 +61,23 @@
             <el-table-column label="state" prop="state" align="center"></el-table-column>
           </el-table>
         </div>
+        <el-dialog title="添加排班" :visible.sync="priodVisible" width="30%">
+          <el-form :model="priod" :rules="rules" ref="formRef" label-width="80px" style="padding-right: 20px">
+            <el-form-item label="doctor" prop="doctor">
+              <el-input v-model="priod.doctor" placeholder="null"></el-input>
+            </el-form-item>
+            <el-form-item label="department" prop="department">
+              <el-input v-model="priod.department" placeholder="null"></el-input>
+            </el-form-item>
+            <el-form-item label="time" prop="time">
+              <el-input v-model="priod.time" placeholder="null"></el-input>
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="departmentVisible = false">取 消</el-button>
+            <el-button type="primary" @click="savePriod">确 定</el-button>
+          </div>
+        </el-dialog>
       </el-tab-pane>
     </el-tabs>
     </div>
@@ -77,7 +97,9 @@ export default {
       departments: [],
       departmentVisible: false,
       department: {},
-      priods: []
+      priods: [],
+      priod: {},
+      priodVisible: false
     }
   },
   created() {
@@ -87,6 +109,9 @@ export default {
   methods: {
     addDepartment() {
       this.departmentVisible = true
+    },
+    addPriod() {
+      this.priodVisible = true
     },
     saveDepartment() {
       this.$refs.formRef.validate((valid) =>{
@@ -108,11 +133,31 @@ export default {
         }
       })
     },
-    handleEdit(row) {
+    savePriod() {
+      this.$refs.formRef.validate((valid) =>{
+        if (valid) {
+          this.$request({
+            url: this.priod.id ? '/priod/update' : '/priod/add',
+            method: this.priod.id ? 'PUT' : 'POST',
+            data: this.priod
+          }).then(res => {
+            if (res.code === '200') {
+              this.$message.success('成功')
+              this.priod = ''
+              this.priodVisible = false
+              this.selectAllPriods()
+            } else {
+              this.$message.error(res.msg)
+            }
+          })
+        }
+      })
+    },
+    handleEditDepartment(row) {
       this.department = JSON.parse(JSON.stringify(row))
       this.departmentVisible = true
     },
-    del(id) {
+    delDepartment(id) {
       this.$confirm('确认删除?', '确认', {type: "warning"}).then(response =>{
         this.$request.delete('/department/delete/' + id).then(res =>{
           if (res.code === '200') {
@@ -151,7 +196,8 @@ export default {
         } else {
         }
       });
-    }
+    },
+
   },
 }
 </script>

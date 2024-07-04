@@ -92,6 +92,47 @@ public class PriodController {
         return Result.success(priods);
     }
 
+    @ApiOperation("管理员上传科室")
+    @PostMapping("/add")
+    public Result add(@RequestBody Priod priod) {
+        priod.setDoctor(priod.getDoctor());
+        priod.setDepartment(priod.getDepartment());
+        priod.setTime(priod.getTime());
+        priod.setState("未预约");
+        // 保存到数据库
+        boolean isSaved = priodService.save(priod);
+        if (isSaved) {
+            return Result.success("上传成功");
+        } else {
+            return Result.error("排班上传失败");
+        }
+    }
+
+    @ApiOperation("更新记录")
+    @PutMapping("/update")
+    public Result update(@RequestBody Priod priod) {
+        boolean updated = priodService.updateById(priod);
+        if (updated) {
+            return Result.success("更新成功");
+        } else {
+            return Result.error("更新失败");
+        }
+    }
+
+    @ApiOperation("根据医生查询排班记录数")
+    @GetMapping("/countAllByDoctor")
+    public Result countAllByDoctor(@RequestParam String doctor) {
+        // 创建 QueryWrapper 对象，并添加查询条件
+        QueryWrapper<Priod> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("doctor", doctor);
+
+        // 调用 recordsService 的 count 方法进行查询
+        int count = priodService.count(queryWrapper);
+
+        // 返回查询结果
+        return Result.success(count);
+    }
+
 }
 
 
