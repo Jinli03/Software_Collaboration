@@ -32,6 +32,7 @@ export default {
   data() {
     return {
       activeTab: 'first',
+      user: JSON.parse(localStorage.getItem('pilot') || '{}'),
     }
   },
   created() {
@@ -42,7 +43,7 @@ export default {
   methods: {
     handleTabClick(tab) {
       if (tab.name === 'second') {
-        this.$refs.adminInformation.selectDepartment();
+        this.$refs.doctorInformation.selectDoctorPriod();
       }
       if (tab.name === 'third') {
         this.$refs.doctorOrder.selectAllRecordsByNameDoctor();

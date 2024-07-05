@@ -252,7 +252,7 @@ public class RecordsController {
         // 分组查询，并按次数升序排列
         queryWrapper.select("name, count(*) as count")
                 .groupBy("name")
-                .orderByAsc("count")
+                .orderByDesc("count")
                 .last("limit 3"); // 只选出前三个
 
         // 调用 recordsService 的 listMaps 方法执行查询

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/priod") //通过/web/hello访问
@@ -132,6 +133,32 @@ public class PriodController {
         // 返回查询结果
         return Result.success(count);
     }
+
+    @ApiOperation("根据 ID 设置挂号记录状态")
+    @PutMapping("/updateStateById")
+    public Result updateStateById(@RequestBody Map<String, Object> request) {
+        Integer id = (Integer) request.get("id");
+        String state = (String) request.get("state");
+
+        // 根据 ID 查询实体对象
+        Priod priod = priodService.getById(id);
+
+        if (priod == null) {
+            return Result.error("根据 ID 找不到挂号记录");
+        }
+
+        // 设置新的状态
+        priod.setState(state);
+
+        // 更新数据库
+        boolean updated = priodService.updateById(priod);
+        if (updated) {
+            return Result.success("更新挂号记录状态成功");
+        } else {
+            return Result.error("更新挂号记录状态失败");
+        }
+    }
+
 
 }
 

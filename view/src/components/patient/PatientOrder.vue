@@ -22,7 +22,7 @@
         <div>
           <el-row :gutter="20" style="padding: 8px">
             <el-col :span="6" v-for="doctor in doctors" :key="doctor.id" style="padding: 10px">
-              <el-card class="card-item" style="cursor: pointer; background-size: cover" :style="{ backgroundImage: 'url(' + doctor.title + ')' }">
+              <el-card class="card-item" style="cursor: pointer; background-size: cover; width:300px; height: 500px" :style="{ backgroundImage: 'url(' + doctor.title + ')' }">
                 <div slot="header" style="color: black;">
                   <span>{{ doctor.name }}</span>
                   <span>{{ doctor.department }}</span>
@@ -94,7 +94,7 @@
           <el-table-column label="state" prop="state" align="center"></el-table-column>
           <el-table-column label="操作" align="center">
             <template v-slot="scope">
-              <el-button size="mini" type="primary" plain v-if="scope.row.state === '已预约' ? false : true" @click="order(scope.row.doctor, scope.row.id, scope.row.time)">预约</el-button>
+              <el-button size="mini" type="primary" plain v-if="scope.row.state === '未预约' ? true : false" @click="order(scope.row.doctor, scope.row.id, scope.row.time)">预约</el-button>
             </template>
           </el-table-column>
         </el-table>

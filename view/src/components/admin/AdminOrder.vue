@@ -23,7 +23,7 @@
           <div>
             <el-row :gutter="20" style="padding: 8px">
               <el-col :span="6" v-for="doctor in doctors" :key="doctor.id" style="padding: 10px">
-                <el-card class="card-item" style="cursor: pointer; background-size: cover" :style="{ backgroundImage: 'url(' + doctor.title + ')' }">
+                <el-card class="card-item" style="cursor: pointer; background-size: cover; width:300px; height: 500px" :style="{ backgroundImage: 'url(' + doctor.title + ')' }">
                   <div slot="header" style="color: black;">
                     <span>{{ doctor.name }}</span>
                     <span>{{ doctor.department }}</span>
@@ -32,6 +32,8 @@
                   <div style="color: black;">
                     <p>.</p>
                     <p>.</p>
+                    <!--                  <el-button type="primary" @click="order(doctor.id)">挂号</el-button>-->
+                    <el-button type="primary" @click="open(doctor.name)">挂号</el-button>
                   </div>
                 </el-card>
               </el-col>
