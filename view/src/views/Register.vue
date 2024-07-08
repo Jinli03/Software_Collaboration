@@ -2,7 +2,7 @@
   <div class="register-page">
     <div class="register-container">
       <div class="register-image">
-        <img src="@/assets/register.png" alt="register">
+        <img src="@/assets/order.png" alt="register">
       </div>
       <div class="form-container">
         <el-form :model="user" :rules="rules" ref="registerRef">

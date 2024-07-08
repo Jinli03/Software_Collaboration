@@ -26,14 +26,16 @@ public class RecordsService extends ServiceImpl<RecordsMapper, Records> {
         // 创建 QueryWrapper 对象，并添加查询条件
         QueryWrapper<Records> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("name", name)
-                .eq("doctor", doctor);
+                .eq("doctor", doctor)
+                .ne("state", "取消预约"); // 添加条件排除状态为"取消预约"的记录
 
         // 调用 MyBatis Plus 的查询方法，注意这里使用的是 this.count 方法
         int count = this.count(queryWrapper);
 
-        // 如果 count 大于 0，表示有符合条件的记录，返回 true；否则返回 false
+        // 返回记录数
         return count;
     }
+
 
 
 }

@@ -28,6 +28,7 @@
               <el-table-column label="name" prop="name" align="center"></el-table-column>
               <el-table-column label="doctor" prop="doctor" align="center"></el-table-column>
               <el-table-column label="department" prop="department" align="center"></el-table-column>
+              <el-table-column label="time" prop="time" align="center"></el-table-column>
               <el-table-column label="state" prop="state" align="center"></el-table-column>
               <el-table-column label="操作" align="center">
                 <template v-slot="scope">

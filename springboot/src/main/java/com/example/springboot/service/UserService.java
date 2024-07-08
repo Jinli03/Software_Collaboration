@@ -80,6 +80,9 @@ public class UserService extends ServiceImpl<UserMapper, User> {
         if (!user.getPassword().equals(userDb.getPassword())){
             throw new ServiceException("用户名或密码错误");
         }
+        if (!user.getRole().equals(userDb.getRole())){
+            throw new ServiceException("角色错误");
+        }
         //生成token
         String token = TokenUtils.createToken(userDb.getId().toString(), userDb.getPassword());
         userDb.setToken(token);

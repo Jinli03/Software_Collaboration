@@ -31,7 +31,7 @@
         </div>
         <div>
           <el-dialog title="添加科室" :visible.sync="departmentVisible" width="30%">
-            <el-form :model="department" :rules="rules" ref="formRef" label-width="80px" style="padding-right: 20px">
+            <el-form :model="department"  ref="formRef" label-width="80px" style="padding-right: 20px">
               <el-form-item label="name" prop="name">
                 <el-input v-model="department.name" placeholder="null"></el-input>
               </el-form-item>
@@ -74,7 +74,7 @@
             </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
-            <el-button @click="departmentVisible = false">取 消</el-button>
+            <el-button @click="priodVisible = false">取 消</el-button>
             <el-button type="primary" @click="savePriod">确 定</el-button>
           </div>
         </el-dialog>

@@ -64,26 +64,29 @@ export default {
         },
         {
           content: '功能',
-          timestamp: '2024-07-02',
+          timestamp: '2024-07-03',
           size: 'large',
           type: 'primary',
-          icon: 'el-icon-more'
+          color: '#0bbd87'
         },
         {
           content: '美化',
-          timestamp: '2024-07-04',
+          timestamp: '2024-07-06',
           size: 'large',
           type: 'primary',
-          icon: 'el-icon-more'
+          color: '#0bbd87'
         },
         {
           content: '测试',
-          timestamp: '2024-07-01',
-          size: 'large'
+          timestamp: '2024-07-08',
+          size: 'large',
+          color: '#0bbd87'
         },
         {
           content: '结束',
-          timestamp: '2024-07-01'
+          timestamp: '2024-07-10',
+          type: 'primary',
+          icon: 'el-icon-more'
         }
       ],
       records: [], // 存储科室挂号次数数据

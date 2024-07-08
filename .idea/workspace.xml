@@ -5,10 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe07aafa-7901-4ca4-afa6-e6b7bbb1a7e5" name="Changes" comment="优化了部分页面">
+      <change afterPath="$PROJECT_DIR$/view/src/assets/order.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/controller/PriodController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/controller/PriodController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/controller/RecordsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/controller/RecordsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/service/RecordsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/service/RecordsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/example/springboot/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/src/components/admin/AdminHomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/components/admin/AdminHomePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/src/components/admin/AdminInformation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/components/admin/AdminInformation.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/src/components/doctor/DoctorHomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/components/doctor/DoctorHomePage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/src/components/doctor/DoctorOrder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/components/doctor/DoctorOrder.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/src/components/patient/PatientHomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/components/patient/PatientHomePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/src/components/patient/PatientOrder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/components/patient/PatientOrder.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/views/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/src/views/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/view/src/views/Register.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +163,7 @@
       <workItem from="1716969404931" duration="1369000" />
       <workItem from="1717493288094" duration="5736000" />
       <workItem from="1719801313462" duration="66412000" />
-      <workItem from="1720051248716" duration="28566000" />
+      <workItem from="1720051248716" duration="35027000" />
     </task>
     <task id="LOCAL-00001" summary="优化登录页面">
       <option name="closed" value="true" />

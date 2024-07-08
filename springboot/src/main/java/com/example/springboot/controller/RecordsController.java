@@ -93,6 +93,30 @@ public class RecordsController {
         }
     }
 
+    @ApiOperation("添加挂号记录")
+    @PostMapping("/addMoney")
+    public Result addMoney(@RequestBody Records record) {
+        String doctor = record.getDoctor();
+        String name = record.getName();
+        User user = userService.getByName(name);
+        int balance = user.getBalance();
+        int result = recordsService.hasRecordByNameAndDoctor(name,doctor);
+        if (result > 0) {
+            return Result.error("今日已预约");
+        } else{
+            if (balance >= 20) {
+                balance = balance - 20;
+                user = userService.setBalance(name, balance);
+                userService.updateUser(user);
+                recordsService.save(record);
+                return Result.success("预约成功");
+            }
+            else {
+                return Result.error("余额不足");
+            }
+        }
+    }
+
     @ApiOperation("根据姓名查询挂号记录")
     @GetMapping("/selectByName")
     public Result selectByName(@RequestParam String name) {

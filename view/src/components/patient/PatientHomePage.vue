@@ -18,11 +18,11 @@
           </div>
           <div style="margin-top: auto;">
             <el-button type="primary" @click="fetchLatestRecord()">获取状态</el-button>
-            <el-button type="warning" @click="charge">充值</el-button>
             <el-button type="success" @click="ok" v-if="record.state === '已叫号' ? true : false">就诊</el-button>
           </div>
         </div>
       </el-card>
+      <el-button type="warning" @click="charge">充值</el-button>
     </el-card>
     <el-card style="border-radius: 10px">
       <p>系统公告</p>
@@ -87,26 +87,29 @@ export default {
         },
         {
           content: '功能',
-          timestamp: '2024-07-02',
+          timestamp: '2024-07-03',
           size: 'large',
           type: 'primary',
-          icon: 'el-icon-more'
+          color: '#0bbd87'
         },
         {
           content: '美化',
-          timestamp: '2024-07-04',
+          timestamp: '2024-07-06',
           size: 'large',
           type: 'primary',
-          icon: 'el-icon-more'
+          color: '#0bbd87'
         },
         {
           content: '测试',
-          timestamp: '2024-07-01',
-          size: 'large'
+          timestamp: '2024-07-08',
+          size: 'large',
+          color: '#0bbd87'
         },
         {
           content: '结束',
-          timestamp: '2024-07-01'
+          timestamp: '2024-07-10',
+          type: 'primary',
+          icon: 'el-icon-more'
         }
       ],
       chargeVisible: false,

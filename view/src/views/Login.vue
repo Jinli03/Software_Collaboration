@@ -15,9 +15,9 @@
           </el-form-item>
           <el-form-item prop="code" class="form-item">
             <div class="code-container">
-                <el-radio v-model="user.actor" label='admin'>管理员</el-radio>
-                <el-radio v-model="user.actor" label='doctor'>医生</el-radio>
-                <el-radio v-model="user.actor" label='patient'>患者</el-radio>
+                <el-radio v-model="user.role" label='admin'>管理员</el-radio>
+                <el-radio v-model="user.role" label='doctor'>医生</el-radio>
+                <el-radio v-model="user.role" label='patient'>患者</el-radio>
             </div>
           </el-form-item>
           <el-form-item class="form-actions">
@@ -75,7 +75,7 @@ export default {
         name: '',
         password: '',
         code: '',
-        actor: 'admin'
+        role: 'admin'
       },
       formLabelWidth: '100px',
       forgetPassDialogVis: false,
@@ -120,7 +120,7 @@ export default {
               localStorage.setItem("pilot", JSON.stringify(res.data));
 
               // 根据角色跳转到不同页面
-              switch (this.user.actor) {
+              switch (this.user.role) {
                 case 'admin':
                   this.$router.push('/admin'); // 管理员页面路径
                   break;
