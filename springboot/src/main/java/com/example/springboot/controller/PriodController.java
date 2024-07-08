@@ -93,7 +93,7 @@ public class PriodController {
         return Result.success(priods);
     }
 
-    @ApiOperation("管理员上传科室")
+    @ApiOperation("管理员上传")
     @PostMapping("/add")
     public Result add(@RequestBody Priod priod) {
         priod.setDoctor(priod.getDoctor());

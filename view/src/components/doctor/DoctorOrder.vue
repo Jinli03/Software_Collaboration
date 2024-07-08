@@ -156,7 +156,7 @@ export default {
       }).then(res => {
         if (res.data) {
           console.log('Response data:', res.data);
-          this.selectStateAndNameRecords()
+          this.selectAllRecordsByNameDoctor()
         }
       });
     },

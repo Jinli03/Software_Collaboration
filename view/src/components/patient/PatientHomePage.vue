@@ -19,7 +19,7 @@
           <div style="margin-top: auto;">
             <el-button type="primary" @click="fetchLatestRecord()">获取状态</el-button>
             <el-button type="warning" @click="charge">充值</el-button>
-            <el-button type="success" @click="ok">就诊</el-button>
+            <el-button type="success" @click="ok" v-if="record.state === '已叫号' ? true : false">就诊</el-button>
           </div>
         </div>
       </el-card>
