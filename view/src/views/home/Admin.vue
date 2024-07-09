@@ -7,15 +7,19 @@
   <div>
     <el-tabs v-model="activeTab" @tab-click="handleTabClick">
       <el-tab-pane label="系统首页" name="first">
+        <span slot="label"><i class="el-icon-house"></i> 系统首页</span>
         <AdminHomePage></AdminHomePage>
       </el-tab-pane>
       <el-tab-pane label="信息管理" name="second">
+        <span slot="label"><i class="el-icon-files"></i> 信息管理</span>
         <AdminInformation ref="adminInformation"></AdminInformation>
       </el-tab-pane>
       <el-tab-pane label="预约就诊" name="third">
+        <span slot="label"><i class="el-icon-date"></i> 预约就诊</span>
         <AdminOrder ref="adminOrder"></AdminOrder>
       </el-tab-pane>
       <el-tab-pane label="用户管理" name="forth">
+        <span slot="label"><i class="el-icon-set-up"></i> 用户管理</span>
         <AdminManager ref="adminManager"></AdminManager>
       </el-tab-pane>
     </el-tabs>

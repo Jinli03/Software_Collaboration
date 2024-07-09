@@ -8,9 +8,11 @@
     <div>
       <el-tabs v-model="activeTab" @tab-click="handleTabClick">
         <el-tab-pane label="系统首页" name="first">
+          <span slot="label"><i class="el-icon-house"></i> 系统首页</span>
           <PatientHomePage></PatientHomePage>
         </el-tab-pane>
         <el-tab-pane label="预约就诊" name="second">
+          <span slot="label"><i class="el-icon-date"></i> 预约就诊</span>
           <PatientOrder ref="patientOrder"></PatientOrder>
         </el-tab-pane>
       </el-tabs>
